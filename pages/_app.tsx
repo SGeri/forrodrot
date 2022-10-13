@@ -3,10 +3,13 @@ import "../public/global.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
 import { Header } from "@components";
+
+const queryClient = new QueryClient();
 
 function Application({
   Component,
@@ -15,24 +18,26 @@ function Application({
   return (
     <>
       <SessionProvider session={session}>
-        <MantineProvider theme={{ colorScheme: "dark" }} withGlobalStyles>
-          <NotificationsProvider>
-            <Head>
-              <title>Pedagógus Tüntetések</title>
-              <meta
-                name="description"
-                content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
-              />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <QueryClientProvider client={queryClient}>
+          <MantineProvider theme={{ colorScheme: "dark" }} withGlobalStyles>
+            <NotificationsProvider>
+              <Head>
+                <title>Pedagógus Tüntetések</title>
+                <meta
+                  name="description"
+                  content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
+                />
+                <link rel="icon" href="/favicon.ico" />
+              </Head>
 
-            <Header />
+              <Header />
 
-            <main>
-              <Component {...pageProps} />
-            </main>
-          </NotificationsProvider>
-        </MantineProvider>
+              <main>
+                <Component {...pageProps} />
+              </main>
+            </NotificationsProvider>
+          </MantineProvider>
+        </QueryClientProvider>
       </SessionProvider>
     </>
   );

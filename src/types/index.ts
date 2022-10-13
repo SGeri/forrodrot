@@ -1,11 +1,10 @@
 export interface Event {
+  id: string;
   title: string;
   image: string;
-  date: string;
-  location: {
-    name: string;
-    x: number;
-    y: number;
-  };
+  date: Date;
+  locationName: string;
+  locationX: number;
+  locationY: number;
   link: string;
 }

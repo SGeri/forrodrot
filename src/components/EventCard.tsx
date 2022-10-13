@@ -1,3 +1,4 @@
+import moment from "moment";
 import { createStyles, Card, Image, Text, AspectRatio } from "@mantine/core";
 import { Event } from "@types";
 
@@ -21,7 +22,7 @@ export default function EventCard({
   title,
   image,
   date,
-  location: { name },
+  locationName,
   link,
 }: Event) {
   const { classes } = useStyles();
@@ -39,10 +40,10 @@ export default function EventCard({
         <Image src={image} alt={title + " eseményborítója"} />
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
-        {date}
+        {moment(date).format("YYYY, MM. DD. HH:mm")}
       </Text>
       <Text color="dimmed" size="xs" weight={700} mt={5}>
-        {name}
+        {locationName}
       </Text>
       <Text className={classes.title} mt={5}>
         {title}

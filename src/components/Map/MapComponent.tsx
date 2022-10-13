@@ -9,7 +9,10 @@ interface MapProps extends MapContainerProps {
 const Map = ({ height, children, ...rest }: MapProps) => {
   return (
     <MapContainer style={{ height, width: "100%" }} {...rest}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
       {children}
     </MapContainer>
   );
