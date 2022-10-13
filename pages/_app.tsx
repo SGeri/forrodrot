@@ -1,11 +1,59 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { MantineProvider, AppShell } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import Image from "next/image";
 
 import { Header, Footer } from "@components";
+
+const guestLinkingOptions = [
+  { label: "Guest", link: "/features" },
+  {
+    label: "Learn",
+    link: "/learn",
+    links: [
+      { label: "Documentation", link: "/learn/docs" },
+      { label: "Documentation", link: "/learn/docs" },
+    ],
+  },
+  { label: "About", link: "/features" },
+  { label: "Pricing", link: "/features" },
+  {
+    label: "Support",
+    link: "/learn",
+    links: [
+      { label: "FAQ", link: "/learn/docs" },
+      { label: "Forums", link: "/learn/docs" },
+    ],
+  },
+];
+
+const userLinkingOptions = [
+  { label: "User", link: "/features" },
+  {
+    label: "Learn",
+    link: "/learn",
+    links: [
+      { label: "Documentation", link: "/learn/docs" },
+      { label: "Documentation", link: "/learn/docs" },
+    ],
+  },
+  { label: "About", link: "/features" },
+  { label: "Pricing", link: "/features" },
+  {
+    label: "Support",
+    link: "/learn",
+    links: [
+      { label: "FAQ", link: "/learn/docs" },
+      { label: "Forums", link: "/learn/docs" },
+    ],
+  },
+  {
+    label: "Kijelentkezés",
+    link: "/api/auth/signout",
+  },
+];
 
 function Application({
   Component,
@@ -28,29 +76,7 @@ function Application({
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <Header
-            links={[
-              { label: "Features", link: "/features" },
-              {
-                label: "Learn",
-                link: "/learn",
-                links: [
-                  { label: "Documentation", link: "/learn/docs" },
-                  { label: "Documentation", link: "/learn/docs" },
-                ],
-              },
-              { label: "About", link: "/features" },
-              { label: "Pricing", link: "/features" },
-              {
-                label: "Support",
-                link: "/learn",
-                links: [
-                  { label: "FAQ", link: "/learn/docs" },
-                  { label: "Forums", link: "/learn/docs" },
-                ],
-              },
-            ]}
-          />
+          <Header links={true ? userLinkingOptions : guestLinkingOptions} />
 
           <main>
             <Component {...pageProps} />

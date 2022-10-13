@@ -5,10 +5,25 @@ import {
   Group,
   Title,
   Button,
+  Box,
+  createStyles,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
+const useStyles = createStyles((theme) => ({
+  root: {
+    [theme.fn.smallerThan("sm")]: {
+      padding: theme.spacing.xl * 2,
+    },
+    [theme.fn.largerThan("xs")]: {
+      padding: 120,
+    },
+  },
+}));
+
 export default function Contact() {
+  const { classes } = useStyles();
+
   const form = useForm({
     initialValues: {
       name: "",
@@ -20,63 +35,70 @@ export default function Contact() {
       name: (value) => value.trim().length < 2,
       email: (value) => !/^\S+@\S+$/.test(value),
       subject: (value) => value.trim().length === 0,
+      message: (value) => value.trim().length < 10,
     },
   });
 
   return (
-    <form onSubmit={form.onSubmit(() => {})}>
-      <Title
-        order={2}
-        size="h1"
-        sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}` })}
-        weight={900}
-        align="center"
-      >
-        Get in touch
-      </Title>
+    <Box className={classes.root}>
+      <form onSubmit={form.onSubmit(() => {})}>
+        <Title
+          order={2}
+          size="h1"
+          sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}` })}
+          weight={900}
+          align="center"
+        >
+          Kérdésed van?
+        </Title>
 
-      <SimpleGrid cols={2} mt="xl" breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
+        <SimpleGrid
+          cols={2}
+          mt="xl"
+          breakpoints={[{ maxWidth: "sm", cols: 1 }]}
+        >
+          <TextInput
+            label="Név"
+            placeholder="Kiss László"
+            name="name"
+            variant="filled"
+            {...form.getInputProps("name")}
+          />
+          <TextInput
+            label="Email címed"
+            placeholder="kisslaci@gmail.com"
+            name="email"
+            variant="filled"
+            {...form.getInputProps("email")}
+          />
+        </SimpleGrid>
+
         <TextInput
-          label="Name"
-          placeholder="Your name"
-          name="name"
+          label="Üzenet tárgya"
+          placeholder="Tárgy"
+          mt="md"
+          name="subject"
           variant="filled"
-          {...form.getInputProps("name")}
+          {...form.getInputProps("subject")}
         />
-        <TextInput
-          label="Email"
-          placeholder="Your email"
-          name="email"
+        <Textarea
+          mt="md"
+          label="Üzenet"
+          placeholder="Üzeneted részletesen"
+          maxRows={10}
+          minRows={5}
+          autosize
+          name="message"
           variant="filled"
-          {...form.getInputProps("email")}
+          {...form.getInputProps("message")}
         />
-      </SimpleGrid>
 
-      <TextInput
-        label="Subject"
-        placeholder="Subject"
-        mt="md"
-        name="subject"
-        variant="filled"
-        {...form.getInputProps("subject")}
-      />
-      <Textarea
-        mt="md"
-        label="Message"
-        placeholder="Your message"
-        maxRows={10}
-        minRows={5}
-        autosize
-        name="message"
-        variant="filled"
-        {...form.getInputProps("subject")}
-      />
-
-      <Group position="center" mt="xl">
-        <Button type="submit" size="md">
-          Send message
-        </Button>
-      </Group>
-    </form>
+        <Group position="center" mt="xl">
+          <Button type="submit" size="md">
+            Küldés
+          </Button>
+        </Group>
+      </form>
+    </Box>
   );
 }

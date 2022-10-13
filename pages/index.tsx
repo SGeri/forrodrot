@@ -1,16 +1,8 @@
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
-import {
-  createStyles,
-  Container,
-  Title,
-  Text,
-  Button,
-  Box,
-  Center,
-} from "@mantine/core";
+import { createStyles, Container, Title, Text, Button } from "@mantine/core";
 
-import { Contact } from "@components";
+import { Contact, FAQ } from "@components";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -94,7 +86,7 @@ const Home: NextPage = () => {
   // if user is logged in show login button
 
   return (
-    <div>
+    <>
       <div className={classes.root}>
         <Container size="lg">
           <div className={classes.inner}>
@@ -107,15 +99,15 @@ const Home: NextPage = () => {
                   variant="gradient"
                   gradient={{ from: "pink", to: "yellow" }}
                 >
-                  fully featured
+                  jövő
                 </Text>{" "}
-                React components library
+                a kérdés, ne habozzunk cselekedni!
               </Title>
 
               <Text className={classes.description} mt={30}>
-                Build fully functional accessible web applications with ease –
-                Mantine includes more than 100 customizable components and hooks
-                to cover you in any situation
+                Az oldalon megtalálhatóak objektív cikkek a magyar közoktatás
+                problémáival kapcsolatban és minden aktualitás a tüntetésekről
+                és sztrájkokról.
               </Text>
 
               <Button
@@ -125,17 +117,17 @@ const Home: NextPage = () => {
                 className={classes.control}
                 mt={40}
               >
-                Get started
+                Események
               </Button>
             </div>
           </div>
         </Container>
       </div>
 
-      <Center sx={{ maxWidth: "700px" }} px={30}>
-        <Contact />
-      </Center>
-    </div>
+      <Contact />
+
+      <FAQ />
+    </>
   );
 };
 
