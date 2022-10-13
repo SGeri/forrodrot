@@ -95,8 +95,10 @@ export default function MyHeader() {
 
   const items = links.map((link) => {
     return (
-      <Link key={link.label} href={link.link} className={classes.link}>
-        {link.label}
+      <Link href={link.link}>
+        <a key={link.label} className={classes.link}>
+          {link.label}
+        </a>
       </Link>
     );
   });
@@ -106,7 +108,7 @@ export default function MyHeader() {
       <Container>
         <div className={classes.inner}>
           <Link href="/">
-            <Group>
+            <Group sx={{ cursor: "pointer" }}>
               <Image src="/logo.png" width={45} height={45} alt="fejléc logo" />
               <Text className={classes.title} weight="500">
                 Forródrót
