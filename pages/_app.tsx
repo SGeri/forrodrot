@@ -13,26 +13,28 @@ function Application({
   pageProps: { session, ...pageProps },
 }: AppProps) {
   return (
-    <SessionProvider session={session}>
-      <MantineProvider theme={{ colorScheme: "dark" }} withGlobalStyles>
-        <NotificationsProvider>
-          <Head>
-            <title>Pedagógus Tüntetések</title>
-            <meta
-              name="description"
-              content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
-            />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
+    <>
+      <SessionProvider session={session}>
+        <MantineProvider theme={{ colorScheme: "dark" }} withGlobalStyles>
+          <NotificationsProvider>
+            <Head>
+              <title>Pedagógus Tüntetések</title>
+              <meta
+                name="description"
+                content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
+              />
+              <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-          <Header />
+            <Header />
 
-          <main>
-            <Component {...pageProps} />
-          </main>
-        </NotificationsProvider>
-      </MantineProvider>
-    </SessionProvider>
+            <main>
+              <Component {...pageProps} />
+            </main>
+          </NotificationsProvider>
+        </MantineProvider>
+      </SessionProvider>
+    </>
   );
 }
 
