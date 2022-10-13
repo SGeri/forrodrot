@@ -7,7 +7,9 @@ interface UpcomingEventsProps {
 }
 
 export default function UpcomingEvents({ events }: UpcomingEventsProps) {
-  const cards = (events || []).map((article) => <EventCard {...article} />);
+  const cards = (events || []).map((article) => (
+    <EventCard key={article.title} {...article} />
+  ));
 
   return (
     <Container py="xl">

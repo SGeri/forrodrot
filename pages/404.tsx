@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   createStyles,
   Title,
@@ -65,11 +66,11 @@ export default function NotFound404() {
         címet!
       </Text>
       <Group position="center">
-        <a href="/">
+        <Link href="/">
           <Button variant="subtle" size="md">
             Vissza a főoldalra
           </Button>
-        </a>
+        </Link>
       </Group>
     </Container>
   );

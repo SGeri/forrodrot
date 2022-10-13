@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { createStyles, Container, Title, Text, Button } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
@@ -100,7 +101,7 @@ export default function Hero() {
               sztrájkokról.
             </Text>
 
-            <a href="/events">
+            <Link href="/events">
               <Button
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
@@ -110,7 +111,7 @@ export default function Hero() {
               >
                 Események
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

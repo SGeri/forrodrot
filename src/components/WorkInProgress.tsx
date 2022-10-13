@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   createStyles,
   Title,
@@ -63,11 +64,11 @@ export default function NotFound404() {
         Ez az oldal még fejlesztés alatt áll. Nézz vissza később!
       </Text>
       <Group position="center">
-        <a href="/">
+        <Link href="/">
           <Button variant="subtle" size="md">
             Vissza a főoldalra
           </Button>
-        </a>
+        </Link>
       </Group>
     </Container>
   );

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   createStyles,
   Header,
@@ -93,9 +94,9 @@ export default function MyHeader() {
 
   const items = links.map((link) => {
     return (
-      <a key={link.label} href={link.link} className={classes.link}>
+      <Link key={link.label} href={link.link} className={classes.link}>
         {link.label}
-      </a>
+      </Link>
     );
   });
 
@@ -103,14 +104,14 @@ export default function MyHeader() {
     <Header height={56} className={classes.header}>
       <Container>
         <div className={classes.inner}>
-          <a href="/">
+          <Link href="/">
             <Group>
               <Image src="/logo.png" width={45} height={45} alt="header logo" />
               <Text className={classes.title} weight="500">
                 Forródrót
               </Text>
             </Group>
-          </a>
+          </Link>
 
           <Group spacing={5} className={classes.links}>
             {items}
