@@ -1,7 +1,7 @@
 import { WorkInProgress } from "@components";
 
-const Dashboard = () => {
+const Articles = () => {
   return <WorkInProgress />;
 };
 
-export default Dashboard;
+export default Articles;

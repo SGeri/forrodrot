@@ -1,7 +1,7 @@
 import { WorkInProgress } from "@components";
 
-const Dashboard = () => {
+const Events = () => {
   return <WorkInProgress />;
 };
 
-export default Dashboard;
+export default Events;

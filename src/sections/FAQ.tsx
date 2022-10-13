@@ -4,7 +4,7 @@ const useStyles = createStyles((theme) => ({
   wrapper: {
     paddingTop: theme.spacing.xl * 2,
     paddingBottom: theme.spacing.xl * 2,
-    minHeight: 650,
+    minHeight: 500,
   },
 
   title: {
@@ -32,7 +32,7 @@ export default function FAQ() {
         Gyakran Ismételt Kérdések
       </Title>
 
-      <Accordion variant="separated">
+      <Accordion>
         <Accordion.Item className={classes.item} value="reset-password">
           <Accordion.Control>How can I reset my password?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>

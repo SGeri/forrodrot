@@ -12,12 +12,12 @@ import { useForm } from "@mantine/form";
 
 const useStyles = createStyles((theme) => ({
   root: {
-    [theme.fn.smallerThan("sm")]: {
-      padding: theme.spacing.xl * 2,
-    },
     [theme.fn.largerThan("xs")]: {
-      padding: 120,
+      paddingLeft: 120,
+      paddingRight: 120,
     },
+
+    padding: theme.spacing.xl * 2,
   },
 }));
 

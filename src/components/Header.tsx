@@ -2,14 +2,13 @@ import Image from "next/image";
 import {
   createStyles,
   Header,
-  Menu,
   Group,
-  Center,
   Burger,
   Container,
+  Text,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconChevronDown } from "@tabler/icons";
+import { useSession } from "next-auth/react";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -61,52 +60,40 @@ const useStyles = createStyles((theme) => ({
   linkLabel: {
     marginRight: 5,
   },
+
+  title: {
+    color: theme.white,
+  },
 }));
 
-interface HeaderSearchProps {
-  links: {
-    link: string;
-    label: string;
-    links?: { link: string; label: string }[];
-  }[];
-}
+const guestLinkingOptions = [
+  { label: "Események", link: "/events" },
+  { label: "Térkép", link: "/map" },
+  { label: "Cikkek", link: "/articles" },
+];
 
-export default function MyHeader({ links }: HeaderSearchProps) {
-  const [opened, { toggle }] = useDisclosure(false);
+const userLinkingOptions = [
+  ...guestLinkingOptions,
+  {
+    label: "Szerkesztő",
+    link: "/dashboard",
+  },
+  {
+    label: "Kijelentkezés",
+    link: "/api/auth/signout",
+  },
+];
+
+export default function MyHeader() {
+  const session = useSession();
   const { classes } = useStyles();
+  const [opened, { toggle }] = useDisclosure(false);
+
+  const links = session.data?.user ? userLinkingOptions : guestLinkingOptions;
 
   const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
-
-    if (menuItems) {
-      return (
-        <Menu key={link.label} trigger="hover" exitTransitionDuration={0}>
-          <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size={12} stroke={1.5} />
-              </Center>
-            </a>
-          </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
-        </Menu>
-      );
-    }
-
     return (
-      <a
-        key={link.label}
-        href={link.link}
-        className={classes.link}
-        onClick={(event) => event.preventDefault()}
-      >
+      <a key={link.label} href={link.link} className={classes.link}>
         {link.label}
       </a>
     );
@@ -116,7 +103,15 @@ export default function MyHeader({ links }: HeaderSearchProps) {
     <Header height={56} className={classes.header}>
       <Container>
         <div className={classes.inner}>
-          <Image src="/logo.png" width={45} height={45} />
+          <a href="/">
+            <Group>
+              <Image src="/logo.png" width={45} height={45} />
+              <Text className={classes.title} weight="500">
+                Forródrót
+              </Text>
+            </Group>
+          </a>
+
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
