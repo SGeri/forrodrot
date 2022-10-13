@@ -21,7 +21,7 @@ export default function EventCard({
   title,
   image,
   date,
-  location,
+  location: { name },
   link,
 }: Event) {
   const { classes } = useStyles();
@@ -42,7 +42,7 @@ export default function EventCard({
         {date}
       </Text>
       <Text color="dimmed" size="xs" weight={700} mt={5}>
-        {location}
+        {name}
       </Text>
       <Text className={classes.title} mt={5}>
         {title}

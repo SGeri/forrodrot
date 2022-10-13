@@ -1,12 +1,16 @@
 import { Marker as MarkerComponent, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-const Marker = () => {
+interface MarkerProps {
+  name: string;
+  x: number;
+  y: number;
+}
+
+const Marker = ({ name, x, y }: MarkerProps) => {
   return (
-    <MarkerComponent position={[51.505, -0.09]}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
+    <MarkerComponent position={[x, y]}>
+      <Popup>{name}</Popup>
     </MarkerComponent>
   );
 };

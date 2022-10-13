@@ -33,6 +33,7 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  // todo make a functional burger
   burger: {
     [theme.fn.largerThan("sm")]: {
       display: "none",

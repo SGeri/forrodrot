@@ -1,5 +1,5 @@
-import { EventCard } from "@components";
 import { SimpleGrid, Container, Title } from "@mantine/core";
+import { EventCard } from "@components";
 import { Event } from "@types";
 
 interface UpcomingEventsProps {
@@ -7,8 +7,8 @@ interface UpcomingEventsProps {
 }
 
 export default function UpcomingEvents({ events }: UpcomingEventsProps) {
-  const cards = (events || []).map((article) => (
-    <EventCard key={article.title} {...article} />
+  const cards = (events || []).map((event) => (
+    <EventCard key={event.title} {...event} />
   ));
 
   return (
