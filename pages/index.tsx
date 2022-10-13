@@ -1,6 +1,7 @@
 import { useQuery } from "react-query";
 
 import { Hero, Map, Contact, FAQ, UpcomingEvents } from "@sections";
+import { Event } from "@types";
 
 const mockdata = [
   {
@@ -49,33 +50,17 @@ const mockdata = [
   },
 ];
 
-const mockdata2 = [
-  {
-    name: "Visszavágó - El a kezekkel a tanárainktól!",
-    x: 47.50315777760025,
-    y: 19.047891392270902,
-  },
-  {
-    name: "Külső-pesti szolidaritási diáktüntetés",
-    x: 47.4890890116628,
-    y: 19.047481850808953,
-  },
-  {
-    name: "Visszavágó - El a kezekkel a tanárainktól!2",
-    x: 47.51163396864433,
-    y: 19.083323170663395,
-  },
-  {
-    name: "Kiállás az oktatásért - rendhagyó aláírásgyűjtés!",
-    x: 47.46714064034113,
-    y: 19.119221537221744,
-  },
-];
-
 const Home = () => {
-  const { data, isLoading, isError } = useQuery("events", () =>
+  // TODO add utils lib for fetching data and a new hook for generating markers
+  const { data, isLoading } = useQuery("events", () =>
     fetch("http://localhost:3000/api/get_events").then((res) => res.json())
   );
+
+  const markers = (data?.events || []).map((event: Event) => ({
+    name: event.title,
+    x: event.locationX,
+    y: event.locationY,
+  }));
 
   return (
     <>
@@ -83,7 +68,7 @@ const Home = () => {
 
       <UpcomingEvents loading={isLoading} events={data?.events} />
 
-      <Map locations={mockdata2} />
+      <Map markers={markers} />
 
       <FAQ />
 

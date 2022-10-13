@@ -8,3 +8,9 @@ export interface Event {
   locationY: number;
   link: string;
 }
+
+export interface Marker {
+  name: string;
+  x: number;
+  y: number;
+}

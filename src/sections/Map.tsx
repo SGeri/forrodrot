@@ -1,5 +1,7 @@
-import { Map, Marker } from "@components";
 import { createStyles, Box } from "@mantine/core";
+
+import { Map, Marker } from "@components";
+import { Marker as MarkerType } from "@types";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -20,14 +22,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 interface UpcomingEventsProps {
-  locations: any[];
+  markers: MarkerType[];
 }
 
-export default function MapSection({ locations }: UpcomingEventsProps) {
+export default function MapSection({ markers }: UpcomingEventsProps) {
   const { classes } = useStyles();
 
-  const markers = (locations || []).map((marker) => (
-    <Marker key={marker.title} {...marker} />
+  const markerComponents = (markers || []).map((marker) => (
+    <Marker key={marker.name} {...marker} />
   ));
 
   return (
@@ -39,7 +41,7 @@ export default function MapSection({ locations }: UpcomingEventsProps) {
         zoom={13}
         scrollWheelZoom={false}
       >
-        {markers}
+        {markerComponents}
       </Map>
     </Box>
   );
