@@ -36,7 +36,7 @@ export default function EventCard({
       className={classes.card}
     >
       <AspectRatio ratio={1920 / 1080}>
-        <Image src={image} />
+        <Image src={image} alt={title + " eseményborítója"} />
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
         {date}
