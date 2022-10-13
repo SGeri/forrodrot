@@ -105,7 +105,7 @@ export default function MyHeader() {
         <div className={classes.inner}>
           <a href="/">
             <Group>
-              <Image src="/logo.png" width={45} height={45} />
+              <Image src="/logo.png" width={45} height={45} alt="header logo" />
               <Text className={classes.title} weight="500">
                 Forródrót
               </Text>
