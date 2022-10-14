@@ -13,8 +13,8 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.largerThan("md")]: {
       paddingTop: theme.spacing.xs * 2,
       paddingBottom: theme.spacing.xs * 2,
-      paddingLeft: 300,
-      paddingRight: 300,
+      paddingLeft: 180,
+      paddingRight: 180,
     },
   },
 }));
@@ -37,7 +37,7 @@ export default function MapSection({ markers }: UpcomingEventsProps) {
       </Title>
 
       <Map
-        height={600}
+        height={800}
         center={[47.4918469795339, 19.055749810174355]}
         zoom={13}
         scrollWheelZoom={false}
