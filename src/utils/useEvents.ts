@@ -14,7 +14,5 @@ export default function useEvents() {
 }
 
 function fetchEvents() {
-  return fetch(process.env.NEXT_PUBLIC_API_URL + "/get_events").then((res) =>
-    res.json()
-  );
+  return fetch("/api/get_events").then((res) => res.json());
 }

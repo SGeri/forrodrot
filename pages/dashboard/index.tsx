@@ -66,7 +66,7 @@ const Dashboard = () => {
     const isEditing = !!event.id;
 
     if (isEditing) {
-      await fetch(process.env.NEXT_PUBLIC_API_URL + "/edit_event", {
+      await fetch("/api/edit_event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Dashboard = () => {
       });
       console.log("Edit event", event);
     } else {
-      await fetch(process.env.NEXT_PUBLIC_API_URL + "/add_event", {
+      await fetch("/api/add_event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const Dashboard = () => {
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(process.env.NEXT_PUBLIC_API_URL + "/delete_event", {
+    await fetch("/api//delete_event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
