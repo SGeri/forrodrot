@@ -22,12 +22,12 @@ function Application({
           <MantineProvider theme={{ colorScheme: "dark" }} withGlobalStyles>
             <NotificationsProvider>
               <Head>
-                <title>Pedagógus Tüntetések</title>
+                <title>Forródrót</title>
                 <meta
                   name="description"
                   content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
                 />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/fav_logo.ico" />
               </Head>
 
               <Header />

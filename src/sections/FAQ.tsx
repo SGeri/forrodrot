@@ -17,7 +17,7 @@ const questions = [
 
 const useStyles = createStyles((theme) => ({
   root: {
-    backgroundColor: theme.colors.dark[6],
+    backgroundColor: theme.colors.dark[9],
   },
 
   wrapper: {

@@ -1,7 +1,5 @@
-import { useQuery } from "react-query";
-
 import { Hero, Map, Contact, FAQ, UpcomingEvents } from "@sections";
-import { Event } from "@types";
+import { useEvents } from "@utils";
 
 const mockdata = [
   {
@@ -50,23 +48,16 @@ const mockdata = [
   },
 ];
 
-const Home = () => {
-  // TODO add utils lib for fetching data and a new hook for generating markers
-  const { data, isLoading } = useQuery("events", () =>
-    fetch("http://localhost:3000/api/get_events").then((res) => res.json())
-  );
+// TODO Logo and fav title// https://noar.hu/szimbolum/
 
-  const markers = (data?.events || []).map((event: Event) => ({
-    name: event.title,
-    x: event.locationX,
-    y: event.locationY,
-  }));
+const Home = () => {
+  const { events, markers, loading } = useEvents();
 
   return (
     <>
       <Hero />
 
-      <UpcomingEvents loading={isLoading} events={data?.events} />
+      <UpcomingEvents loading={loading} events={events} />
 
       <Map markers={markers} />
 

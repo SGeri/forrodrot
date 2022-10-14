@@ -1,4 +1,10 @@
-import { SimpleGrid, Container, Title, LoadingOverlay } from "@mantine/core";
+import {
+  SimpleGrid,
+  Container,
+  Title,
+  LoadingOverlay,
+  Text,
+} from "@mantine/core";
 import { EventCard } from "@components";
 import { Event } from "@types";
 
@@ -22,6 +28,12 @@ export default function UpcomingEvents({
       <Title align="center" mb="xl">
         Közelgő rendezvények
       </Title>
+
+      {cards.length <= 0 && (
+        <Text weight="bold" align="center">
+          Jelenleg nincs megjeleníthető esemény!
+        </Text>
+      )}
 
       <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
         {cards}

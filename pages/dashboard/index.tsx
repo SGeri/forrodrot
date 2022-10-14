@@ -1,25 +1,44 @@
 import moment from "moment";
-import { useQuery } from "react-query";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { Box, Table, LoadingOverlay } from "@mantine/core";
+import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
 import { Event } from "@types";
 import { useEffect } from "react";
+import { useEvents } from "@utils";
+import { createStyles, Text } from "@mantine/core";
+import { PencilPlus, Trash, Plus } from "tabler-icons-react";
+
+const useStyles = createStyles((theme) => ({
+  actionsContainer: {
+    width: 200,
+    height: 60,
+
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+
+    padding: theme.spacing.md,
+    margin: theme.spacing.md,
+    borderRadius: theme.radius.sm,
+    backgroundColor: theme.colors.dark[4],
+
+    cursor: "pointer",
+  },
+}));
 
 const Dashboard = () => {
   const { data: session } = useSession();
+  const { classes } = useStyles();
   const router = useRouter();
 
   useEffect(() => {
     if (!session?.user) router.replace("/api/auth/signin");
   });
 
-  // TODO add utils lib for fetching data
-  const { data, isLoading } = useQuery("events", () =>
-    fetch("http://localhost:3000/api/get_events").then((res) => res.json())
-  );
+  const { events, loading } = useEvents();
 
-  const rows = (data?.events || []).map((event: Event) => (
+  const rows = events.map((event: Event) => (
     <tr key={event.id}>
       <td onClick={() => handleEdit(event)} style={{ cursor: "pointer" }}>
         {event.title}
@@ -30,13 +49,28 @@ const Dashboard = () => {
     </tr>
   ));
 
+  const handleAdd = () => {
+    console.log("add");
+  };
+
   const handleEdit = (event: Event) => {
     console.log(event);
   };
 
   return (
     <Box px="xl">
-      <LoadingOverlay visible={isLoading} overlayBlur={2} />
+      <LoadingOverlay visible={loading} overlayBlur={2} />
+
+      <Center>
+        <Box className={classes.actionsContainer} onClick={handleAdd}>
+          <ActionIcon variant="default" size={30} color="green">
+            <PencilPlus />
+          </ActionIcon>
+          <Text m="md" weight={700}>
+            Hozzáadás
+          </Text>
+        </Box>
+      </Center>
 
       <Table
         highlightOnHover

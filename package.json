@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setupdb": "npx prisma migrate deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -25,7 +26,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-leaflet": "^4.1.0",
-    "react-query": "^3.39.2"
+    "react-query": "^3.39.2",
+    "tabler-icons-react": "^1.55.0"
   },
   "devDependencies": {
     "@types/node": "^18.8.4",

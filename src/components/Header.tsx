@@ -107,7 +107,12 @@ export default function MyHeader() {
         <div className={classes.inner}>
           <Link href="/">
             <Group sx={{ cursor: "pointer" }}>
-              <Image src="/logo.png" width={45} height={45} alt="fejléc logo" />
+              <Image
+                src="/fav_logo.webp"
+                width={45}
+                height={45}
+                alt="fejléc logo"
+              />
               <Text className={classes.title} weight="500">
                 Forródrót
               </Text>

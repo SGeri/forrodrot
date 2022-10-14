@@ -1,7 +1,10 @@
-import { WorkInProgress } from "@components";
+import { useEvents } from "@utils";
+import { Map } from "@sections";
 
-const Map = () => {
-  return <WorkInProgress />;
+const MapPage = () => {
+  const { markers } = useEvents();
+
+  return <Map markers={markers} />;
 };
 
-export default Map;
+export default MapPage;
