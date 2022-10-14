@@ -1,11 +1,11 @@
-import { createStyles, Box } from "@mantine/core";
+import { createStyles, Box, Title, Center } from "@mantine/core";
 
 import { Map, Marker } from "@components";
 import { Marker as MarkerType } from "@types";
 
 const useStyles = createStyles((theme) => ({
   root: {
-    backgroundColor: theme.colors.dark[5],
+    backgroundColor: theme.colors.dark[7],
 
     [theme.fn.smallerThan("md")]: {
       padding: theme.spacing.xs * 2,
@@ -17,8 +17,6 @@ const useStyles = createStyles((theme) => ({
       paddingRight: 300,
     },
   },
-
-  map: {},
 }));
 
 interface UpcomingEventsProps {
@@ -34,9 +32,12 @@ export default function MapSection({ markers }: UpcomingEventsProps) {
 
   return (
     <Box className={classes.root}>
+      <Title weight={700} align="center" mb="xl">
+        Eseménytérkép
+      </Title>
+
       <Map
         height={600}
-        className={classes.map}
         center={[47.4918469795339, 19.055749810174355]}
         zoom={13}
         scrollWheelZoom={false}

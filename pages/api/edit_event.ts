@@ -23,7 +23,7 @@ export default async function handler(
     res.status(401).json({ success: false, error: "Unauthorized" });
 
   try {
-    await prisma.event.create({
+    await prisma.event.update({
       data: {
         title: req.body.title,
         image: req.body.image,
@@ -32,6 +32,9 @@ export default async function handler(
         locationX: parseFloat(req.body.locationX),
         locationY: parseFloat(req.body.locationY),
         link: req.body.link,
+      },
+      where: {
+        id: req.body.id,
       },
     });
     res.status(200).json({ success: true });

@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
 import { Event } from "@types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useEvents } from "@utils";
 import { createStyles, Text } from "@mantine/core";
 import { PencilPlus, Trash, Plus } from "tabler-icons-react";
+
+import { EventForm } from "@components";
 
 const useStyles = createStyles((theme) => ({
   actionsContainer: {
@@ -31,12 +33,14 @@ const Dashboard = () => {
   const { data: session } = useSession();
   const { classes } = useStyles();
   const router = useRouter();
+  const [event, setEvent] = useState<Event>();
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (!session?.user) router.replace("/api/auth/signin");
   });
 
-  const { events, loading } = useEvents();
+  const { events, refetch, loading } = useEvents();
 
   const rows = events.map((event: Event) => (
     <tr key={event.id}>
@@ -50,11 +54,37 @@ const Dashboard = () => {
   ));
 
   const handleAdd = () => {
-    console.log("add");
+    setShowForm(true);
   };
 
   const handleEdit = (event: Event) => {
-    console.log(event);
+    setEvent(event);
+    setShowForm(true);
+  };
+
+  const handleSubmit = async (event: Event) => {
+    const isEditing = !!event.id;
+
+    if (isEditing) {
+      await fetch("http://localhost:3000/api/edit_event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(event),
+      });
+      console.log("Edit event", event);
+    } else {
+      await fetch("http://localhost:3000/api/add_event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(event),
+      });
+      console.log("Add event", event);
+    }
+    refetch();
   };
 
   return (
@@ -71,6 +101,14 @@ const Dashboard = () => {
           </Text>
         </Box>
       </Center>
+
+      {showForm && (
+        <EventForm
+          key={event?.id}
+          onSubmit={(data) => handleSubmit(data)}
+          event={event}
+        />
+      )}
 
       <Table
         highlightOnHover

@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { Event } from "@types";
 
 export default function useEvents() {
-  const { data, isLoading } = useQuery("events", fetchEvents);
+  const { data, isLoading, refetch } = useQuery("events", fetchEvents);
 
   const markers = (data?.events || []).map((event: Event) => ({
     name: event.title,
@@ -10,7 +10,7 @@ export default function useEvents() {
     y: event.locationY,
   }));
 
-  return { loading: isLoading, events: data?.events || [], markers };
+  return { loading: isLoading, events: data?.events || [], markers, refetch };
 }
 
 function fetchEvents() {

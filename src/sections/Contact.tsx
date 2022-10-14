@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import {
   TextInput,
   Textarea,
@@ -9,6 +10,7 @@ import {
   createStyles,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -17,6 +19,7 @@ const useStyles = createStyles((theme) => ({
       paddingRight: 120,
     },
 
+    backgroundColor: theme.colors.dark[7],
     padding: theme.spacing.xl * 2,
   },
 }));
@@ -24,6 +27,7 @@ const useStyles = createStyles((theme) => ({
 export default function Contact() {
   const { classes } = useStyles();
 
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const form = useForm({
     initialValues: {
       name: "",
@@ -39,9 +43,39 @@ export default function Contact() {
     },
   });
 
+  const handleSubmit = async (data: any) => {
+    recaptchaRef.current?.execute();
+
+    fetch(
+      "http://localhost:3000/api/contact",
+
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => {
+        if (res.status === 200) {
+          form.reset();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Box className={classes.root}>
-      <form onSubmit={form.onSubmit(() => {})}>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          size="invisible"
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_KEY!}
+        />
+
         <Title
           order={2}
           size="h1"
