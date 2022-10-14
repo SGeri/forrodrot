@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Alert,
+  Group,
 } from "@mantine/core";
 import { TimeInput, DatePicker } from "@mantine/dates";
 import { Event } from "@types";
@@ -23,6 +24,7 @@ const useStyles = createStyles((theme) => ({
 
 interface EventFormProps {
   onSubmit: (data: any) => void;
+  onDelete: (id: string) => void;
   event: Event | undefined;
 }
 
@@ -37,7 +39,11 @@ const getInitialValues = (event?: Event) => ({
   link: event?.link || "",
 });
 
-export default function EventForm({ onSubmit, event }: EventFormProps) {
+export default function EventForm({
+  onSubmit,
+  onDelete,
+  event,
+}: EventFormProps) {
   const { classes } = useStyles();
 
   const [loading, setLoading] = useState(false);
@@ -76,6 +82,10 @@ export default function EventForm({ onSubmit, event }: EventFormProps) {
         time.getMinutes()
       ),
     };
+  };
+
+  const handleDelete = () => {
+    onDelete(event?.id!);
   };
 
   return (
@@ -164,9 +174,16 @@ export default function EventForm({ onSubmit, event }: EventFormProps) {
           />
         </Stack>
 
-        <Button type="submit" color="red" mt="xl">
-          {isEditing ? "Szerkesztés" : "Létrehozás"}
-        </Button>
+        <Group>
+          <Button type="submit" color="red" mt="xl">
+            {isEditing ? "Szerkesztés" : "Létrehozás"}
+          </Button>{" "}
+          {isEditing && (
+            <Button color="red" mt="xl" onClick={handleDelete}>
+              Törlés
+            </Button>
+          )}
+        </Group>
 
         {error && (
           <Box pt="md">

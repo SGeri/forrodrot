@@ -12,7 +12,6 @@ interface Response {
 }
 
 // TODO Validate input
-// TODO Check user auth (https://next-auth.js.org/tutorials/securing-pages-and-api-routes)
 
 export default async function handler(
   req: NextApiRequest,

@@ -66,7 +66,7 @@ const Dashboard = () => {
     const isEditing = !!event.id;
 
     if (isEditing) {
-      await fetch("http://localhost:3000/api/edit_event", {
+      await fetch(process.env.NEXT_PUBLIC_API_URL + "/edit_event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const Dashboard = () => {
       });
       console.log("Edit event", event);
     } else {
-      await fetch("http://localhost:3000/api/add_event", {
+      await fetch(process.env.NEXT_PUBLIC_API_URL + "/add_event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,6 +84,18 @@ const Dashboard = () => {
       });
       console.log("Add event", event);
     }
+    refetch();
+  };
+
+  const handleDelete = async (id: string) => {
+    await fetch(process.env.NEXT_PUBLIC_API_URL + "/delete_event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+    setShowForm(false);
     refetch();
   };
 
@@ -105,8 +117,9 @@ const Dashboard = () => {
       {showForm && (
         <EventForm
           key={event?.id}
-          onSubmit={(data) => handleSubmit(data)}
           event={event}
+          onSubmit={(data) => handleSubmit(data)}
+          onDelete={(id) => handleDelete(id)}
         />
       )}
 

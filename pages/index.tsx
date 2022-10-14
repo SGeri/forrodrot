@@ -48,8 +48,6 @@ const mockdata = [
   },
 ];
 
-// TODO Logo and fav title// https://noar.hu/szimbolum/
-
 const Home = () => {
   const { events, markers, loading } = useEvents();
 
