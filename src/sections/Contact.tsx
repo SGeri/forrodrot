@@ -29,7 +29,7 @@ export default function Contact() {
       </Title>
 
       <Group position="center" mt="xl">
-        <Link href="mailto:lacitotharson@gmail.com">
+        <Link href="mailto:info@forrodrot.com">
           <Button size="xl">Írj nekünk!</Button>
         </Link>
       </Group>
