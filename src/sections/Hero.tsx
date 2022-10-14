@@ -83,23 +83,31 @@ export default function Hero() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              A{" "}
+              Nincs{" "}
               <Text
                 component="span"
                 inherit
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
               >
-                jövő
-              </Text>{" "}
-              a kérdés, ne habozzunk cselekedni!
+								tanár
+              </Text>{""}
+							,
+							nincs{" "}
+              <Text
+                component="span"
+                inherit
+                variant="gradient"
+                gradient={{ from: "pink", to: "yellow" }}
+              >
+              	jövő
+              </Text>{""}
+							!
             </Title>
 
             <Text className={classes.description} mt={30}>
-              Az oldalon megtalálhatóak objektív cikkek a magyar közoktatás
-              problémáival kapcsolatban és minden aktualitás a tüntetésekről és
-              sztrájkokról.
-            </Text>
+							Minden közoktatással kapcsolatos polgári kezdeményezések egy helyen.
+						</Text>
 
             <Link href="/events">
               <Button
