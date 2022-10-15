@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { unstable_getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
+import slugify from "slugify";
 
 const prisma = new PrismaClient();
 
@@ -25,7 +26,9 @@ export default async function handler(
     await prisma.article.create({
       data: {
         title: req.body.title,
+        slug: slugify(req.body.title, { lower: true, locale: "hu" }),
         description: req.body.description,
+        image: req.body.image,
         content: req.body.content,
       },
     });

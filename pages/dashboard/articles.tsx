@@ -43,11 +43,14 @@ const Dashboard = () => {
 
   const { articles, refetch, loading } = useArticles();
 
+  console.log(articles);
+
   const rows = articles.map((article: Article) => (
     <tr key={article.id}>
       <td onClick={() => handleEdit(article)} style={{ cursor: "pointer" }}>
         {article.title}
       </td>
+      <td>{article.slug}</td>
       <td>{article.description}</td>
       <td>{moment(article.publishedAt).format("YYYY, MM. DD. HH:mm")}</td>
     </tr>
@@ -140,6 +143,7 @@ const Dashboard = () => {
         <thead>
           <tr>
             <th>Cikk címe</th>
+            <th>Slug</th>
             <th>Rövid leírás</th>
             <th>Publikálás dátuma</th>
           </tr>

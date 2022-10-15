@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 interface Response {
   error?: string;
-  articles: Article[];
+  article?: Article;
 }
 
 export default async function handler(
@@ -14,13 +14,14 @@ export default async function handler(
   res: NextApiResponse<Response>
 ) {
   try {
-    const articles = await prisma.article.findMany({
-      orderBy: {
-        publishedAt: "desc",
+    const article = await prisma.article.findFirst({
+      where: {
+        slug: req.body.slug,
       },
     });
-    res.status(200).json({ articles });
+
+    res.status(200).json({ article: article! });
   } catch (err) {
-    res.status(500).json({ error: String(err), articles: [] });
+    res.status(500).json({ error: String(err) });
   }
 }

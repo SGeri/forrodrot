@@ -36,6 +36,7 @@ const getInitialValues = (article?: Article) => ({
   title: article?.title || "",
   description: article?.description || "",
   content: article?.content || "",
+  image: article?.image || "",
 });
 
 export default function ArticleForm({
@@ -55,6 +56,7 @@ export default function ArticleForm({
       title: (value) => value.trim().length < 2,
       description: (value) => value.trim().length === 0,
       content: (value) => value.trim().length === 0,
+      image: (value) => value.trim().length === 0,
     },
   });
 
@@ -92,6 +94,16 @@ export default function ArticleForm({
               form.setFieldValue("description", event.currentTarget.value)
             }
             error={form.errors.description}
+          />
+          <TextInput
+            required
+            label="Háttérkép"
+            placeholder="http://kep.hu/kep.jpg"
+            value={form.values.image}
+            onChange={(event) =>
+              form.setFieldValue("image", event.currentTarget.value)
+            }
+            error={form.errors.image}
           />
           <ArticleEditor
             className={classes.editor}

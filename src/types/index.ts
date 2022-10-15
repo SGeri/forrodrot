@@ -11,10 +11,12 @@ export interface Event {
 
 export interface Article {
   id?: string;
+  slug: string;
   title: string;
   description: string;
   content: string;
   publishedAt?: Date;
+  image: string;
 }
 
 export interface Marker {

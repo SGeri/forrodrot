@@ -3,7 +3,7 @@ import { Container, Title, Accordion, createStyles, Box } from "@mantine/core";
 const questions = [
   [
     "Mi ez az oldal?",
-    "A Forródrót egy információ-gyűjtő és megosztó oldal, ahol minden a magyar közoktatással kapcsolatos polgári kezdeményezés megtalálható.",
+    "A Forródrót egy információgyűjtő és -megosztó oldal, ahol minden, a magyar közoktatással kapcsolatos polgári kezdeményezés megtalálható.",
   ],
   [
     "Mi az olal célja?",
@@ -19,10 +19,10 @@ const questions = [
     1. Kivánjuk a magyar oktatás szabadságát!<br />
     2. Önálló oktatási minisztériumot!<br />
     3. Szabad tankönyvválasztást!<br />
-    4. Ideologiamentes nemzeti alaptantervet!<br />
+    4. Ideológiamentes nemzeti alaptantervet!<br />
     5. Megfelelő munkakörülményeket!<br />
     6. Csökkentsék a tanárok és a diákok terheit!<br />
-    7. Iskolai autonomiát!<br />
+    7. Iskolai autonómiát!<br />
     8. A pedagógusbérek rendezését!<br />
     9. A tankerület esküdjék meg a munka törvénykönyvére, leterhelt tanárainkat ne vigyék helyettesíteni, a helyettesítést ellátó tanárokat fizessék ki!<br />
     10. A kölcseys tanárok kirúgásának visszavonását!<br />
@@ -36,11 +36,11 @@ const questions = [
   ],
   [
     "Kik állnak a Forródrót mögött?",
-    "Mérges, elkeseredett, aggódó diákok, akikek elegük lett a magyar közoktatásban rájuk és tanáraikra nehezedő terhekből és megkötésekből, és az intézményekben őket körülvevő állapotokból.",
+    "Mérges, elkeseredett, aggódó diákok, akiknek elegük lett a magyar közoktatásban rájuk és tanáraikra nehezedő terhekből és megkötésekből, és az intézményekben őket körülvevő állapotokból.",
   ],
   [
     "Ki finanszírozza a Forródrótot?",
-    "Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik az oldalt. Az ezzel járó költségeket (domain név, szerver, stb.) maguk fedezik.",
+    "Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik. Az ezzel járó költségeket (domain név, szerver, stb.) maguk fedezik.",
   ],
 ];
 

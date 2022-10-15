@@ -21,6 +21,8 @@ model Event {
 model Article {
   id          String   @id @unique @default(uuid())
   title       String
+  slug        String   @unique
+  image       String
   description String
   content     String
   publishedAt DateTime @default(now())
