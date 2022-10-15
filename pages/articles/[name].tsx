@@ -3,8 +3,6 @@ import { useArticle } from "@utils";
 import { createStyles, Center, Loader, Text, Box } from "@mantine/core";
 import slugify from "slugify";
 
-slugify.extend({ "💩": "kagi" });
-
 const useStyles = createStyles((theme) => ({
   root: {
     [theme.fn.smallerThan("xs")]: {
@@ -21,8 +19,9 @@ export default function Article() {
   const { classes } = useStyles();
   const router = useRouter();
   const { name } = router.query;
-
   const slug = slugify(String(name), { lower: true, locale: "hu" });
+
+  const { article, loading } = useArticle(slug);
 
   if (!slug)
     return (
@@ -30,8 +29,6 @@ export default function Article() {
         <Text>A cikknév megadása kötelező.</Text>
       </Center>
     );
-
-  const { article, loading } = useArticle(slug);
 
   if (loading)
     return (
