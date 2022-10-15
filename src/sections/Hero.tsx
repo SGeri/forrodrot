@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { createStyles, Container, Title, Text, Button } from "@mantine/core";
+import {
+  createStyles,
+  Container,
+  Title,
+  Text,
+  Button,
+  Box,
+} from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -83,6 +90,18 @@ export default function Hero() {
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
+              <Box>
+                Nincs{" "}
+                <Text
+                  component="span"
+                  inherit
+                  variant="gradient"
+                  gradient={{ from: "pink", to: "yellow" }}
+                >
+                  Tanár
+                </Text>
+                {""},
+              </Box>
               Nincs{" "}
               <Text
                 component="span"
@@ -90,24 +109,15 @@ export default function Hero() {
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
               >
-								tanár
-              </Text>{""}
-							,
-							nincs{" "}
-              <Text
-                component="span"
-                inherit
-                variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}
-              >
-              	jövő
-              </Text>{""}
-							!
+                Jövő
+              </Text>
+              {""}!
             </Title>
 
             <Text className={classes.description} mt={30}>
-							Minden közoktatással kapcsolatos polgári kezdeményezések egy helyen.
-						</Text>
+              Minden közoktatással kapcsolatos polgári kezdeményezések egy
+              helyen.
+            </Text>
 
             <Link href="/events">
               <Button

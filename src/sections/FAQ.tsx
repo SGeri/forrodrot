@@ -1,59 +1,47 @@
 import { Container, Title, Accordion, createStyles, Box } from "@mantine/core";
 
 const questions = [
-	[
-		"Mi ez az oldal?",
-		"A Forródrót egy információ-gyűjtő és megosztó oldal, ahol minden a magyar közoktatással kapcsolatos polgári kezdeményezés megtalálható."
-	],
-	[
-		"Mi az olal célja?",
-		"Összegyűjteni és egy helyen elérhetővé tenni az országszerte létrejövő, a közoktatás reformjára irányuló polgári kezdeményezésekkel kapcsolatos információkat."
-	],
-	[
-		"Mi a kezdeményezések célja?",
-		"A Forródrót csupán információ-gyűjtő és megosztó oldal, az egyes kezdeményezések szervezői és résztvevői más-más problémákra hívják fel a figyelmet és várnak megoldást. Egy azonban biztos: a magyar közoktatás válságban van, és sürgős változtatások nélkül összeomlik."//TODO Ilyen változtatások találhatók az alábbi, tanárok által írt tizenkét pontban.
-/*
-Mit kiván a magyar pedagógus
-
-1. Kivánjuk a magyar oktatás szabadságát!
-2. Önálló oktatási minisztériumot!
-3. Szabad tankönyvválasztást!
-4. Ideologiamentes nemzeti alaptantervet!
-5. Megfelelő munkakörülményeket!
-6. Csökkentsék a tanárok és a diákok terheit!
-7. Iskolai autonomiát!
-8. A pedagógusbérek rendezését!
-9. A tankerület esküdjék meg a munka törvénykönyvére, leterhelt tanárainkat ne vigyék helyettesíteni, a helyettesítést ellátó tanárokat fizessék ki!
-10. A kölcseys tanárok kirúgásának visszavonását!
-11. Párbeszédet az oktatásban dolgozókkal!
-12. A fenyegetések beszüntetését!
-*/
-	],
-	[
-		"Hogyan segíthetek?",
-		"Oszd meg velünk az eseményeidet! Kis, diákokból álló csapat vagyunk, így rátok, a változásért küzdő bajtársainkra van szükségünk, hogy értesüljünk a kezdeményezésekről és másokkal is megoszthassuk őket."
-		//TODO"Oszd meg velünk a fotóidat! Nem csak a közelgő, hanem a megtörtént eseményeket is össze akarjuk gyűjteni, hogy látható legyen, mennyi ember, mennyi helyen, mennyi ideje küzd az oktatás ügyéért."
-	],
-	[
-		"Kik állnak a Forródrót mögött?",
-		"Mérges, elkeseredett, aggódó diákok, akikek elegük lett a magyar közoktatásban rájuk és tanáraikra nehezedő terhekből és megkötésekből, és az intézményekben őket körülvevő állapotokból."
-	],
-	[
-		"Ki finanszírozza a Forródrótot?",
-		"Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik az oldalt. Az ezzel járó költségeket (domain név, szerver, stb.) maguk fedezik."
-	]
-  /*[
-    "Ez itt az első kérdés?",
-    "Igen, ez az első kérdés, itt pedig ennek a kifejtése van.",
+  [
+    "Mi ez az oldal?",
+    "A Forródrót egy információ-gyűjtő és megosztó oldal, ahol minden a magyar közoktatással kapcsolatos polgári kezdeményezés megtalálható.",
   ],
   [
-    "Ez itt az második kérdés?",
-    "Igen, ez az első kérdés, itt pedig ennek a kifejtése van.",
+    "Mi az olal célja?",
+    "Összegyűjteni és egy helyen elérhetővé tenni az országszerte létrejövő, a közoktatás reformjára irányuló polgári kezdeményezésekkel kapcsolatos információkat.",
   ],
   [
-    "Ez itt az harmadik kérdés?",
-    "Igen, ez az első kérdés, itt pedig ennek a kifejtése van.",
-  ],*/
+    "Mi a kezdeményezések célja?",
+    `
+    A Forródrót csupán információ-gyűjtő és megosztó oldal, az egyes kezdeményezések szervezői és résztvevői más-más problémákra hívják fel a figyelmet és várnak megoldást. Egy azonban biztos: a magyar közoktatás válságban van, és sürgős változtatások nélkül összeomlik.
+    <br /><br />
+    <strong>Mit kiván a magyar pedagógus:</strong>
+    <br /><br />
+    1. Kivánjuk a magyar oktatás szabadságát!<br />
+    2. Önálló oktatási minisztériumot!<br />
+    3. Szabad tankönyvválasztást!<br />
+    4. Ideologiamentes nemzeti alaptantervet!<br />
+    5. Megfelelő munkakörülményeket!<br />
+    6. Csökkentsék a tanárok és a diákok terheit!<br />
+    7. Iskolai autonomiát!<br />
+    8. A pedagógusbérek rendezését!<br />
+    9. A tankerület esküdjék meg a munka törvénykönyvére, leterhelt tanárainkat ne vigyék helyettesíteni, a helyettesítést ellátó tanárokat fizessék ki!<br />
+    10. A kölcseys tanárok kirúgásának visszavonását!<br />
+    11. Párbeszédet az oktatásban dolgozókkal!<br />
+    12. A fenyegetések beszüntetését!`,
+  ],
+  [
+    "Hogyan segíthetek?",
+    "Oszd meg velünk az eseményeidet! Kis, diákokból álló csapat vagyunk, így rátok, a változásért küzdő bajtársainkra van szükségünk, hogy értesüljünk a kezdeményezésekről és másokkal is megoszthassuk őket.",
+    //TODO"Oszd meg velünk a fotóidat! Nem csak a közelgő, hanem a megtörtént eseményeket is össze akarjuk gyűjteni, hogy látható legyen, mennyi ember, mennyi helyen, mennyi ideje küzd az oktatás ügyéért."
+  ],
+  [
+    "Kik állnak a Forródrót mögött?",
+    "Mérges, elkeseredett, aggódó diákok, akikek elegük lett a magyar közoktatásban rájuk és tanáraikra nehezedő terhekből és megkötésekből, és az intézményekben őket körülvevő állapotokból.",
+  ],
+  [
+    "Ki finanszírozza a Forródrótot?",
+    "Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik az oldalt. Az ezzel járó költségeket (domain név, szerver, stb.) maguk fedezik.",
+  ],
 ];
 
 const useStyles = createStyles((theme) => ({
@@ -98,7 +86,9 @@ export default function FAQ() {
                 className={classes.item}
               >
                 <Accordion.Control>{question}</Accordion.Control>
-                <Accordion.Panel>{answer}</Accordion.Panel>
+                <Accordion.Panel>
+                  <div dangerouslySetInnerHTML={{ __html: answer }}></div>{" "}
+                </Accordion.Panel>
               </Accordion.Item>
             );
           })}
