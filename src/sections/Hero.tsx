@@ -13,8 +13,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor: "#11284b",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundImage:
-      "linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(https://nepszava.hu/i/12/6/1/1355974.jpg)",
+    backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url("hero_bg.jpg")`,
     paddingTop: theme.spacing.xl * 3,
     paddingBottom: theme.spacing.xl * 3,
   },

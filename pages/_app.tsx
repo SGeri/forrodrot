@@ -27,6 +27,19 @@ function Application({
                   content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
                 />
                 <link rel="icon" href="/fav_logo.ico" />
+
+                <meta property="og:title" content="Forródrót" />
+                <meta property="og:site_name" content="Forródrót" />
+                <meta property="og:url" content="forrodrot.com" />
+                <meta
+                  property="og:description"
+                  content="A Forródrót a közoktatással kapcsolatos polgári kezdeményezések gyűjtőhelye."
+                />
+                <meta property="og:type" content="website" />
+                <meta
+                  property="og:image"
+                  content="https://i.imgur.com/iaj8OnB.png"
+                />
               </Head>
 
               <Header />
