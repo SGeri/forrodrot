@@ -14,5 +14,5 @@ export default function useEvents() {
 }
 
 function fetchEvents() {
-  return fetch("/api/get_events").then((res) => res.json());
+  return fetch("/api/events/get_events").then((res) => res.json());
 }

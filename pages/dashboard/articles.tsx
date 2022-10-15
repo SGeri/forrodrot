@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
-import { Event } from "@types";
+import { Article } from "@types";
 import { useEffect, useState } from "react";
-import { useEvents } from "@utils";
+import { useArticles } from "@utils";
 import { createStyles, Text } from "@mantine/core";
-import { PencilPlus, Writing } from "tabler-icons-react";
+import { PencilPlus, CalendarEvent } from "tabler-icons-react";
 
-import { EventForm } from "@components";
+import { ArticleForm } from "@components";
 
 const useStyles = createStyles((theme) => ({
   actionsContainer: {
@@ -34,23 +34,22 @@ const Dashboard = () => {
   const { data: session } = useSession();
   const { classes } = useStyles();
   const router = useRouter();
-  const [event, setEvent] = useState<Event>();
+  const [article, setArticle] = useState<Article>();
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     if (!session?.user) router.replace("/api/auth/signin");
   });
 
-  const { events, refetch, loading } = useEvents();
+  const { articles, refetch, loading } = useArticles();
 
-  const rows = events.map((event: Event) => (
-    <tr key={event.id}>
-      <td onClick={() => handleEdit(event)} style={{ cursor: "pointer" }}>
-        {event.title}
+  const rows = articles.map((article: Article) => (
+    <tr key={article.id}>
+      <td onClick={() => handleEdit(article)} style={{ cursor: "pointer" }}>
+        {article.title}
       </td>
-      <td>{moment(event.date).format("YYYY, MM. DD. HH:mm")}</td>
-      <td>{event.locationName}</td>
-      <td>{event.link}</td>
+      <td>{article.description}</td>
+      <td>{moment(article.publishedAt).format("YYYY, MM. DD. HH:mm")}</td>
     </tr>
   ));
 
@@ -58,38 +57,38 @@ const Dashboard = () => {
     setShowForm(true);
   };
 
-  const handleEdit = (event: Event) => {
-    setEvent(event);
+  const handleEdit = (article: Article) => {
+    setArticle(article);
     setShowForm(true);
   };
 
-  const handleSubmit = async (event: Event) => {
-    const isEditing = !!event.id;
+  const handleSubmit = async (article: Article) => {
+    const isEditing = !!article.id;
 
     if (isEditing) {
-      await fetch("/api/events/edit_event", {
+      await fetch("/api/articles/edit_article", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(event),
+        body: JSON.stringify(article),
       });
-      console.log("Edit event", event);
+      console.log("Edit event", article);
     } else {
-      await fetch("/api/events/add_event", {
+      await fetch("/api/articles/add_article", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(event),
+        body: JSON.stringify(article),
       });
-      console.log("Add event", event);
+      console.log("Add event", article);
     }
     refetch();
   };
 
   const handleDelete = async (id: string) => {
-    await fetch("/api/events/delete_event", {
+    await fetch("/api/articles/delete_article", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -113,22 +112,22 @@ const Dashboard = () => {
             Hozzáadás
           </Text>
         </Box>
-        <Link href="/dashboard/articles">
+        <Link href="/dashboard">
           <Box className={classes.actionsContainer}>
             <ActionIcon variant="default" size={30} color="green">
-              <PencilPlus />
+              <CalendarEvent />
             </ActionIcon>
             <Text m="md" weight={700}>
-              Cikkek
+              Események
             </Text>
           </Box>
         </Link>
       </Center>
 
       {showForm && (
-        <EventForm
-          key={event?.id}
-          event={event}
+        <ArticleForm
+          key={article?.id}
+          article={article}
           onSubmit={(data) => handleSubmit(data)}
           onDelete={(id) => handleDelete(id)}
         />
@@ -142,10 +141,9 @@ const Dashboard = () => {
       >
         <thead>
           <tr>
-            <th>Megnevezése</th>
-            <th>Dátum és időpont</th>
-            <th>Helyszín</th>
-            <th>Link</th>
+            <th>Cikk címe</th>
+            <th>Rövid leírás</th>
+            <th>Publikálás dátuma</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
