@@ -1,13 +1,12 @@
-import "../public/global.css";
-
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
-
 import { Header } from "@components";
+
+import "../public/global.css";
 
 const queryClient = new QueryClient();
 

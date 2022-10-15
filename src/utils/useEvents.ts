@@ -1,8 +1,11 @@
 import { useQuery } from "react-query";
 import { Event } from "@types";
+import { API } from "@utils";
 
 export default function useEvents() {
-  const { data, isLoading, refetch } = useQuery("events", fetchEvents);
+  const { data, isLoading, refetch } = useQuery("events", () =>
+    API.getEvents()
+  );
 
   const markers = (data?.events || []).map((event: Event) => ({
     name: event.title,
@@ -11,8 +14,4 @@ export default function useEvents() {
   }));
 
   return { loading: isLoading, events: data?.events || [], markers, refetch };
-}
-
-function fetchEvents() {
-  return fetch("/api/events/get_events").then((res) => res.json());
 }

@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
 import { Article } from ".prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@server";
 
 interface Response {
   error?: string;
@@ -21,6 +19,6 @@ export default async function handler(
     });
     res.status(200).json({ articles });
   } catch (err) {
-    res.status(500).json({ error: String(err), articles: [] });
+    res.status(500).json({ error: err as string, articles: [] });
   }
 }

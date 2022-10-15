@@ -30,9 +30,11 @@ const questions = [
     12. A fenyegetések beszüntetését!`,
   ],
   [
+    // TODO when backlogging is implemented, change answer to this
+    // Oszd meg velünk a fotóidat! Nem csak a közelgő, hanem a megtörtént eseményeket is össze akarjuk gyűjteni, hogy látható legyen, mennyi ember, mennyi helyen, mennyi ideje küzd az oktatás ügyéért.
+
     "Hogyan segíthetek?",
     "Oszd meg velünk az eseményeidet! Kis, diákokból álló csapat vagyunk, így rátok, a változásért küzdő bajtársainkra van szükségünk, hogy értesüljünk a kezdeményezésekről és másokkal is megoszthassuk őket.",
-    //TODO"Oszd meg velünk a fotóidat! Nem csak a közelgő, hanem a megtörtént eseményeket is össze akarjuk gyűjteni, hogy látható legyen, mennyi ember, mennyi helyen, mennyi ideje küzd az oktatás ügyéért."
   ],
   [
     "Kik állnak a Forródrót mögött?",

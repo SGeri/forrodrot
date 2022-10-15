@@ -1,11 +1,10 @@
 import { useQuery } from "react-query";
+import { API } from "@utils";
 
 export default function useArticles() {
-  const { data, isLoading, refetch } = useQuery("articles", fetchArticles);
+  const { data, isLoading, refetch } = useQuery("articles", () =>
+    API.getArticles()
+  );
 
   return { loading: isLoading, articles: data?.articles || [], refetch };
-}
-
-function fetchArticles() {
-  return fetch("/api/articles/get_articles").then((res) => res.json());
 }

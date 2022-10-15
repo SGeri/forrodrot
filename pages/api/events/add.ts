@@ -1,10 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-
 import { unstable_getServerSession } from "next-auth/next";
+import { prisma } from "@server";
 import { authOptions } from "../auth/[...nextauth]";
-
-const prisma = new PrismaClient();
 
 interface Response {
   success: boolean;
@@ -35,6 +32,6 @@ export default async function handler(
     });
     res.status(200).json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, error: String(err) });
+    res.status(500).json({ success: false, error: err as string });
   }
 }

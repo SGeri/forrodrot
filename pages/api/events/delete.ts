@@ -1,11 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-
 import { unstable_getServerSession } from "next-auth/next";
+import { prisma } from "@server";
 import { authOptions } from "../auth/[...nextauth]";
-import slugify from "slugify";
-
-const prisma = new PrismaClient();
 
 interface Response {
   success: boolean;
@@ -23,20 +19,13 @@ export default async function handler(
     res.status(401).json({ success: false, error: "Unauthorized" });
 
   try {
-    await prisma.article.update({
-      data: {
-        title: req.body.title,
-        slug: slugify(req.body.title, { lower: true, locale: "hu" }),
-        description: req.body.description,
-        image: req.body.image,
-        content: req.body.content,
-      },
+    await prisma.event.delete({
       where: {
         id: req.body.id,
       },
     });
     res.status(200).json({ success: true });
   } catch (err) {
-    res.status(500).json({ success: false, error: String(err) });
+    res.status(500).json({ success: false, error: err as string });
   }
 }

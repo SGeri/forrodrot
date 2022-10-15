@@ -1,6 +1,6 @@
-import { createStyles, Paper, Text, Title } from "@mantine/core";
-import Link from "next/link";
 import moment from "moment";
+import Link from "next/link";
+import { createStyles, Paper, Text, Title } from "@mantine/core";
 
 interface ArticleCardProps {
   title: string;

@@ -1,14 +1,20 @@
+import { useEffect, useState } from "react";
 import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
-import { Article } from "@types";
-import { useEffect, useState } from "react";
-import { useArticles } from "@utils";
-import { createStyles, Text } from "@mantine/core";
 import { PencilPlus, CalendarEvent } from "tabler-icons-react";
-
+import {
+  createStyles,
+  Box,
+  Table,
+  LoadingOverlay,
+  Center,
+  ActionIcon,
+  Text,
+} from "@mantine/core";
+import { Article } from "@types";
+import { API, useArticles } from "@utils";
 import { ArticleForm } from "@components";
 
 const useStyles = createStyles((theme) => ({
@@ -28,6 +34,10 @@ const useStyles = createStyles((theme) => ({
 
     cursor: "pointer",
   },
+
+  pointer: {
+    cursor: "pointer",
+  },
 }));
 
 const Dashboard = () => {
@@ -43,11 +53,9 @@ const Dashboard = () => {
 
   const { articles, refetch, loading } = useArticles();
 
-  console.log(articles);
-
   const rows = articles.map((article: Article) => (
     <tr key={article.id}>
-      <td onClick={() => handleEdit(article)} style={{ cursor: "pointer" }}>
+      <td className={classes.pointer} onClick={() => handleEdit(article)}>
         {article.title}
       </td>
       <td>{article.slug}</td>
@@ -65,38 +73,17 @@ const Dashboard = () => {
     setShowForm(true);
   };
 
-  const handleSubmit = async (article: Article) => {
-    const isEditing = !!article.id;
-
-    if (isEditing) {
-      await fetch("/api/articles/edit_article", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(article),
-      });
-    } else {
-      await fetch("/api/articles/add_article", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(article),
-      });
-    }
+  const handleDelete = async (id: string) => {
+    await API.deleteArticle(id);
+    setShowForm(false);
     refetch();
   };
 
-  const handleDelete = async (id: string) => {
-    await fetch("/api/articles/delete_article", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
-    setShowForm(false);
+  const handleFormSubmit = async (article: Article) => {
+    const isEditing = !!article.id;
+
+    isEditing ? await API.editArticles(article) : await API.addArticle(article);
+
     refetch();
   };
 
@@ -129,7 +116,7 @@ const Dashboard = () => {
         <ArticleForm
           key={article?.id}
           article={article}
-          onSubmit={(data) => handleSubmit(data)}
+          onSubmit={(data) => handleFormSubmit(data)}
           onDelete={(id) => handleDelete(id)}
         />
       )}

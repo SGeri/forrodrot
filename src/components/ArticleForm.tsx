@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "@mantine/form";
 import {
   createStyles,
@@ -6,13 +5,16 @@ import {
   TextInput,
   Box,
   Button,
-  Alert,
   Group,
 } from "@mantine/core";
 import { ArticleEditor } from "@components";
 import { Article } from "@types";
 
-import "dayjs/locale/hu";
+interface ArticleFormProps {
+  onSubmit: (data: any) => void;
+  onDelete: (id: string) => void;
+  article: Article | undefined;
+}
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -20,17 +22,14 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+
   editor: {
     height: 500,
     overflow: "scroll",
   },
-}));
 
-interface ArticleFormProps {
-  onSubmit: (data: any) => void;
-  onDelete: (id: string) => void;
-  article: Article | undefined;
-}
+  form: { maxWidth: 800, width: "100%" },
+}));
 
 const getInitialValues = (article?: Article) => ({
   title: article?.title || "",
@@ -39,26 +38,24 @@ const getInitialValues = (article?: Article) => ({
   image: article?.image || "",
 });
 
+const getFormOptions = (article?: Article) => ({
+  initialValues: getInitialValues(article),
+
+  validate: {
+    title: (value: string) => value.trim().length < 2,
+    description: (value: string) => value.trim().length === 0,
+    content: (value: string) => value.trim().length === 0,
+    image: (value: string) => value.trim().length === 0,
+  },
+});
+
 export default function ArticleForm({
   onSubmit,
   onDelete,
   article,
 }: ArticleFormProps) {
   const { classes } = useStyles();
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>();
-
-  const form = useForm({
-    initialValues: getInitialValues(article ?? undefined),
-
-    validate: {
-      title: (value) => value.trim().length < 2,
-      description: (value) => value.trim().length === 0,
-      content: (value) => value.trim().length === 0,
-      image: (value) => value.trim().length === 0,
-    },
-  });
+  const form = useForm(getFormOptions(article));
 
   const isEditing = !!article;
 
@@ -69,7 +66,7 @@ export default function ArticleForm({
   return (
     <Box className={classes.root}>
       <form
-        style={{ maxWidth: 800, width: "100%" }}
+        className={classes.form}
         onSubmit={form.onSubmit((values) =>
           onSubmit({ id: article?.id, ...values })
         )}
@@ -115,21 +112,13 @@ export default function ArticleForm({
         <Group>
           <Button type="submit" color="red" mt="xl">
             {isEditing ? "Szerkesztés" : "Létrehozás"}
-          </Button>{" "}
+          </Button>
           {isEditing && (
             <Button color="red" mt="xl" onClick={handleDelete}>
               Törlés
             </Button>
           )}
         </Group>
-
-        {error && (
-          <Box pt="md">
-            <Alert title="Hiba történt" color="red" variant="outline">
-              {error}
-            </Alert>
-          </Box>
-        )}
       </form>
     </Box>
   );

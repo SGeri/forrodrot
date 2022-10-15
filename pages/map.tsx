@@ -1,4 +1,3 @@
-import { Center, Title } from "@mantine/core";
 import { useEvents } from "@utils";
 import { Map } from "@sections";
 

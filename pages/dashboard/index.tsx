@@ -1,14 +1,13 @@
+import { useEffect, useState } from "react";
 import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
-import { Event } from "@types";
-import { useEffect, useState } from "react";
-import { useEvents } from "@utils";
+import { PencilPlus } from "tabler-icons-react";
 import { createStyles, Text } from "@mantine/core";
-import { PencilPlus, Writing } from "tabler-icons-react";
-
+import { Event } from "@types";
+import { useEvents, API } from "@utils";
 import { EventForm } from "@components";
 
 const useStyles = createStyles((theme) => ({
@@ -28,6 +27,10 @@ const useStyles = createStyles((theme) => ({
 
     cursor: "pointer",
   },
+
+  pointer: {
+    cursor: "pointer",
+  },
 }));
 
 const Dashboard = () => {
@@ -45,7 +48,7 @@ const Dashboard = () => {
 
   const rows = events.map((event: Event) => (
     <tr key={event.id}>
-      <td onClick={() => handleEdit(event)} style={{ cursor: "pointer" }}>
+      <td className={classes.pointer} onClick={() => handleEdit(event)}>
         {event.title}
       </td>
       <td>{moment(event.date).format("YYYY, MM. DD. HH:mm")}</td>
@@ -63,38 +66,17 @@ const Dashboard = () => {
     setShowForm(true);
   };
 
-  const handleSubmit = async (event: Event) => {
-    const isEditing = !!event.id;
-
-    if (isEditing) {
-      await fetch("/api/events/edit_event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(event),
-      });
-    } else {
-      await fetch("/api/events/add_event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(event),
-      });
-    }
+  const handleDelete = async (id: string) => {
+    await API.deleteEvent(id);
+    setShowForm(false);
     refetch();
   };
 
-  const handleDelete = async (id: string) => {
-    await fetch("/api/events/delete_event", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id }),
-    });
-    setShowForm(false);
+  const handleFormSubmit = async (event: Event) => {
+    const isEditing = !!event.id;
+
+    isEditing ? await API.editEvent(event) : await API.addEvent(event);
+
     refetch();
   };
 
@@ -127,7 +109,7 @@ const Dashboard = () => {
         <EventForm
           key={event?.id}
           event={event}
-          onSubmit={(data) => handleSubmit(data)}
+          onSubmit={(data) => handleFormSubmit(data)}
           onDelete={(id) => handleDelete(id)}
         />
       )}

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import { useArticle } from "@utils";
-import { createStyles, Center, Loader, Text, Box } from "@mantine/core";
 import slugify from "slugify";
+import { createStyles, Center, Loader, Text, Box } from "@mantine/core";
+import { useArticle } from "@utils";
 
 const useStyles = createStyles((theme) => ({
   root: {

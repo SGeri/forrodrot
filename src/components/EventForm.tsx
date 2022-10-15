@@ -1,18 +1,22 @@
-import { useState } from "react";
 import { useForm } from "@mantine/form";
+import { TimeInput, DatePicker } from "@mantine/dates";
 import {
   createStyles,
   Stack,
   TextInput,
   Box,
   Button,
-  Alert,
   Group,
 } from "@mantine/core";
-import { TimeInput, DatePicker } from "@mantine/dates";
 import { Event } from "@types";
 
 import "dayjs/locale/hu";
+
+interface EventFormProps {
+  onSubmit: (data: any) => void;
+  onDelete: (id: string) => void;
+  event: Event | undefined;
+}
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -20,13 +24,9 @@ const useStyles = createStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-}));
 
-interface EventFormProps {
-  onSubmit: (data: any) => void;
-  onDelete: (id: string) => void;
-  event: Event | undefined;
-}
+  form: { maxWidth: 800, width: "100%" },
+}));
 
 const getInitialValues = (event?: Event) => ({
   title: event?.title || "",
@@ -39,32 +39,30 @@ const getInitialValues = (event?: Event) => ({
   link: event?.link || "",
 });
 
+const getFormOptions = (event?: Event) => ({
+  initialValues: getInitialValues(event),
+
+  validate: {
+    title: (value: string) => value.trim().length < 2,
+    image: (value: string) => value.trim().length === 0,
+    date: (value: Date) => !value,
+    time: (value: Date) => !value,
+    locationName: (value: string) => value.trim().length === 0,
+    locationX: (value: string) =>
+      parseFloat(value) < 45.7 || parseFloat(value) > 48.6,
+    locationY: (value: string) =>
+      parseFloat(value) < 16 || parseFloat(value) > 22.9,
+    link: (value: string) => value.trim().length === 0,
+  },
+});
+
 export default function EventForm({
   onSubmit,
   onDelete,
   event,
 }: EventFormProps) {
   const { classes } = useStyles();
-
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | undefined>();
-
-  const form = useForm({
-    initialValues: getInitialValues(event ?? undefined),
-
-    validate: {
-      title: (value) => value.trim().length < 2,
-      image: (value) => value.trim().length === 0,
-      date: (value: any) => !value,
-      time: (value: any) => !value,
-      locationName: (value) => value.trim().length === 0,
-      locationX: (value: string) =>
-        parseFloat(value) < 45.7 || parseFloat(value) > 48.6,
-      locationY: (value: string) =>
-        parseFloat(value) < 16 || parseFloat(value) > 22.9,
-      link: (value) => value.trim().length === 0,
-    },
-  });
+  const form = useForm(getFormOptions(event));
 
   const isEditing = !!event;
 
@@ -72,7 +70,6 @@ export default function EventForm({
     const { date, time, ...rest } = data;
 
     return {
-      ...rest,
       id: event?.id,
       date: new Date(
         date.getFullYear(),
@@ -81,6 +78,7 @@ export default function EventForm({
         time.getHours(),
         time.getMinutes()
       ),
+      ...rest,
     };
   };
 
@@ -91,7 +89,7 @@ export default function EventForm({
   return (
     <Box className={classes.root}>
       <form
-        style={{ maxWidth: 800, width: "100%" }}
+        className={classes.form}
         onSubmit={form.onSubmit((values) => onSubmit(processFormData(values)))}
       >
         <Stack>
@@ -177,21 +175,13 @@ export default function EventForm({
         <Group>
           <Button type="submit" color="red" mt="xl">
             {isEditing ? "Szerkesztés" : "Létrehozás"}
-          </Button>{" "}
+          </Button>
           {isEditing && (
             <Button color="red" mt="xl" onClick={handleDelete}>
               Törlés
             </Button>
           )}
         </Group>
-
-        {error && (
-          <Box pt="md">
-            <Alert title="Hiba történt" color="red" variant="outline">
-              {error}
-            </Alert>
-          </Box>
-        )}
       </form>
     </Box>
   );

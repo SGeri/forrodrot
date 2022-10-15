@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import {
   createStyles,
   Header,
@@ -11,7 +12,6 @@ import {
   Paper,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { useSession } from "next-auth/react";
 
 const useStyles = createStyles((theme) => ({
   header: {

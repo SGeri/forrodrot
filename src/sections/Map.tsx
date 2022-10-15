@@ -1,5 +1,4 @@
-import { createStyles, Box, Title, Center } from "@mantine/core";
-
+import { createStyles, Box, Title } from "@mantine/core";
 import { Map, Marker } from "@components";
 import { Marker as MarkerType } from "@types";
 
