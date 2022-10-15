@@ -7,6 +7,8 @@ import {
   Burger,
   Container,
   Text,
+  Transition,
+  Paper,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useSession } from "next-auth/react";
@@ -33,7 +35,6 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
-  // todo make a functional burger
   burger: {
     [theme.fn.largerThan("sm")]: {
       display: "none",
@@ -50,6 +51,11 @@ const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
+    [theme.fn.smallerThan("sm")]: {
+      borderRadius: 0,
+      padding: theme.spacing.md,
+    },
+
     "&:hover": {
       backgroundColor: theme.fn.lighten(
         theme.fn.variant({ variant: "filled", color: theme.primaryColor })
@@ -65,6 +71,22 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     color: theme.white,
+  },
+
+  dropdown: {
+    position: "absolute",
+    top: 60,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: "hidden",
+
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
   },
 }));
 
@@ -122,6 +144,7 @@ export default function MyHeader() {
           <Group spacing={5} className={classes.links}>
             {items}
           </Group>
+
           <Burger
             opened={opened}
             onClick={toggle}
@@ -129,6 +152,18 @@ export default function MyHeader() {
             size="sm"
             color="#fff"
           />
+
+          <Transition
+            transition="pop-top-right"
+            duration={200}
+            mounted={opened}
+          >
+            {(styles) => (
+              <Paper className={classes.dropdown} withBorder style={styles}>
+                {items}
+              </Paper>
+            )}
+          </Transition>
         </div>
       </Container>
     </Header>
