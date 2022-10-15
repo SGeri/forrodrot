@@ -68,7 +68,9 @@ export default function ArticleForm({
     <Box className={classes.root}>
       <form
         style={{ maxWidth: 800, width: "100%" }}
-        onSubmit={form.onSubmit((values) => onSubmit(values))}
+        onSubmit={form.onSubmit((values) =>
+          onSubmit({ id: article?.id, ...values })
+        )}
       >
         <Stack>
           <TextInput

@@ -22,15 +22,11 @@ export default async function handler(
     res.status(401).json({ success: false, error: "Unauthorized" });
 
   try {
-    await prisma.event.update({
+    await prisma.article.update({
       data: {
         title: req.body.title,
-        image: req.body.image,
-        date: new Date(req.body.date),
-        locationName: req.body.locationName,
-        locationX: parseFloat(req.body.locationX),
-        locationY: parseFloat(req.body.locationY),
-        link: req.body.link,
+        description: req.body.description,
+        content: req.body.content,
       },
       where: {
         id: req.body.id,

@@ -74,7 +74,6 @@ const Dashboard = () => {
         },
         body: JSON.stringify(event),
       });
-      console.log("Edit event", event);
     } else {
       await fetch("/api/events/add_event", {
         method: "POST",
@@ -83,7 +82,6 @@ const Dashboard = () => {
         },
         body: JSON.stringify(event),
       });
-      console.log("Add event", event);
     }
     refetch();
   };

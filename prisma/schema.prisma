@@ -17,3 +17,11 @@ model Event {
   locationY    Float
   link         String
 }
+
+model Article {
+  id          String   @id @unique @default(uuid())
+  title       String
+  description String
+  content     String
+  publishedAt DateTime @default(now())
+}

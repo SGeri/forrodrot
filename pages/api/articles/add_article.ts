@@ -22,9 +22,11 @@ export default async function handler(
     res.status(401).json({ success: false, error: "Unauthorized" });
 
   try {
-    await prisma.article.delete({
-      where: {
-        id: req.body.id,
+    await prisma.article.create({
+      data: {
+        title: req.body.title,
+        description: req.body.description,
+        content: req.body.content,
       },
     });
     res.status(200).json({ success: true });
