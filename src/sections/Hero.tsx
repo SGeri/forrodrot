@@ -114,8 +114,7 @@ export default function Hero() {
             </Title>
 
             <Text className={classes.description} mt={30}>
-              Minden közoktatással kapcsolatos polgári kezdeményezések egy
-              helyen.
+              Minden közoktatással kapcsolatos polgári kezdeményezés egy helyen.
             </Text>
 
             <Link href="/events">
