@@ -19,11 +19,18 @@ model Event {
 }
 
 model Article {
-  id          String   @id @unique @default(uuid())
-  title       String
-  slug        String   @unique
-  image       String
-  description String
-  content     String
-  publishedAt DateTime @default(now())
+  id           String   @id @unique @default(uuid())
+  title        String
+  slug         String   @unique
+  image        String
+  description  String
+  content      String
+  publishedAt  DateTime @default(now())
+}
+
+model User {
+  id           String   @id @unique @default(uuid())
+  name         String
+  email        String   @unique
+  password     String
 }
