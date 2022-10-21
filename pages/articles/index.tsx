@@ -13,7 +13,7 @@ const ArticlesPage = ({ articles }: ArticlesPageProps) => {
 };
 
 export async function getServerSideProps() {
-  const articles = await API.getArticles();
+  const { articles } = await API.getArticles();
 
   return {
     props: {

@@ -1,7 +1,11 @@
-import { useRouter } from "next/router";
 import slugify from "slugify";
-import { createStyles, Center, Loader, Text, Box } from "@mantine/core";
-import { useArticle, API } from "@utils";
+import { createStyles, Center, Text, Box } from "@mantine/core";
+import { API } from "@utils";
+import { Article as ArticleType } from "@types";
+
+interface ArticlePageProps {
+  article: ArticleType;
+}
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -14,27 +18,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Article() {
+export default function Article({ article }: ArticlePageProps) {
   const { classes } = useStyles();
-  const router = useRouter();
-  const { name } = router.query;
-  const slug = slugify(String(name), { lower: true, locale: "hu" });
-
-  const { article, loading } = useArticle(slug);
-
-  if (!slug)
-    return (
-      <Center>
-        <Text>A cikknév megadása kötelező.</Text>
-      </Center>
-    );
-
-  if (loading)
-    return (
-      <Center>
-        <Loader />
-      </Center>
-    );
 
   if (!article)
     return (
@@ -51,14 +36,17 @@ export default function Article() {
 }
 
 export async function getServerSideProps(context: any) {
-  const slug = context?.params?.name;
+  const slug = slugify(String(context?.params?.name), {
+    lower: true,
+    locale: "hu",
+  });
 
-  const articles = await API.getArticle(slug);
+  const { article } = await API.getArticle(slug);
 
   // Nested Objects are not supported by getServerSideProps
   return {
     props: {
-      articles: JSON.stringify(articles) || [],
+      article,
     },
   };
 }
