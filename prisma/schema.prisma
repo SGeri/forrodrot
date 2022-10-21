@@ -16,6 +16,7 @@ model Event {
   locationX    Float
   locationY    Float
   link         String
+  hidden       Boolean  @default(false)
 }
 
 model Article {
@@ -27,6 +28,7 @@ model Article {
   content      String
   publishedAt  DateTime @default(now())
   authorName   String
+  hidden       Boolean  @default(false)
 }
 
 model User {

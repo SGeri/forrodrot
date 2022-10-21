@@ -7,6 +7,7 @@ import {
   Box,
   Button,
   Group,
+  Checkbox,
 } from "@mantine/core";
 import { Event } from "@types";
 
@@ -37,6 +38,7 @@ const getInitialValues = (event?: Event) => ({
   locationX: event?.locationX || "",
   locationY: event?.locationY || "",
   link: event?.link || "",
+  hidden: event?.hidden || false,
 });
 
 const getFormOptions = (event?: Event) => ({
@@ -181,6 +183,11 @@ export default function EventForm({
               Törlés
             </Button>
           )}
+          <Checkbox
+            label="Rejtett"
+            mt={25}
+            {...form.getInputProps("hidden", { type: "checkbox" })}
+          />
         </Group>
       </form>
     </Box>

@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Group,
+  Checkbox,
 } from "@mantine/core";
 import { ArticleEditor } from "@components";
 import { Article } from "@types";
@@ -36,6 +37,7 @@ const getInitialValues = (article?: Article) => ({
   description: article?.description || "",
   content: article?.content || "",
   image: article?.image || "",
+  hidden: article?.hidden || false,
 });
 
 const getFormOptions = (article?: Article) => ({
@@ -118,6 +120,11 @@ export default function ArticleForm({
               Törlés
             </Button>
           )}
+          <Checkbox
+            label="Rejtett"
+            mt={25}
+            {...form.getInputProps("hidden", { type: "checkbox" })}
+          />
         </Group>
       </form>
     </Box>

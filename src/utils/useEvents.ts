@@ -2,9 +2,9 @@ import { useQuery } from "react-query";
 import { Event } from "@types";
 import { API } from "@utils";
 
-export default function useEvents() {
+export default function useEvents(showHidden?: boolean) {
   const { data, isLoading, refetch } = useQuery("events", () =>
-    API.getEvents()
+    API.getEvents(showHidden)
   );
 
   const markers = (data?.events || []).map((event: Event) => ({

@@ -51,7 +51,7 @@ const Dashboard = () => {
     if (!session?.user) router.replace("/api/auth/signin");
   });
 
-  const { articles, refetch, loading } = useArticles();
+  const { articles, refetch, loading } = useArticles(true);
 
   const rows = articles.map((article: Article) => (
     <tr key={article.id}>

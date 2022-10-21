@@ -30,10 +30,11 @@ export const getArticle = async (slug: string) => {
   }).then((res) => res.json());
 };
 
-export const getArticles = async () => {
-  return await fetch(BASE_URL + Endpoints.GetArticles).then((res) =>
-    res.json()
-  );
+export const getArticles = async (showHidden?: boolean) => {
+  return await fetch(BASE_URL + Endpoints.GetArticles, {
+    ...postOptions,
+    body: JSON.stringify({ showHidden }),
+  }).then((res) => res.json());
 };
 
 export const addArticle = async (article: Article) => {
@@ -58,8 +59,11 @@ export const deleteArticle = async (id: string) => {
 };
 
 // Article related API calls
-export const getEvents = async () => {
-  return await fetch(BASE_URL + Endpoints.GetEvents).then((res) => res.json());
+export const getEvents = async (showHidden?: boolean) => {
+  return await fetch(BASE_URL + Endpoints.GetEvents, {
+    ...postOptions,
+    body: JSON.stringify({ showHidden }),
+  }).then((res) => res.json());
 };
 
 export const addEvent = async (event: Event) => {

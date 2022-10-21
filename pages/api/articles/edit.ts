@@ -27,6 +27,7 @@ export default async function handler(
         description: req.body.description,
         image: req.body.image,
         content: req.body.content,
+        hidden: req.body.hidden,
       },
       where: {
         id: req.body.id,

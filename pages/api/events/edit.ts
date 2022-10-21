@@ -28,6 +28,7 @@ export default async function handler(
         locationX: parseFloat(req.body.locationX),
         locationY: parseFloat(req.body.locationY),
         link: req.body.link,
+        hidden: req.body.hidden,
       },
       where: {
         id: req.body.id,

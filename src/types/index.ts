@@ -7,6 +7,7 @@ export interface Event {
   locationX: number;
   locationY: number;
   link: string;
+  hidden?: boolean;
 }
 
 export interface Article {
@@ -18,6 +19,7 @@ export interface Article {
   publishedAt?: Date;
   image: string;
   authorName: string;
+  hidden?: boolean;
 }
 
 export interface Marker {
