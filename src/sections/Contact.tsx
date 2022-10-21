@@ -24,11 +24,15 @@ export default function Contact() {
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}` })}
         weight={900}
         align="center"
-        mb='.5em'
+        mb="md"
       >
         Kérdésed van?
       </Title>
-      <Text align="center" weight={700}>Eseményt jelentenél be? Ötleted van? Írj nekünk!</Text>
+
+      <Text align="center" weight={700}>
+        Eseményt jelentenél be? Ötleted van? Írj nekünk!
+      </Text>
+
       <Group position="center" mt="xl">
         <Link href="mailto:info@forrodrot.com">
           <Button size="xl">Írj nekünk!</Button>
