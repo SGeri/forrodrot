@@ -45,7 +45,7 @@ export default function Articles({ articles }: ArticlesProps) {
 
       {cards.length <= 0 && (
         <Text weight="bold" align="center">
-          Jelenleg nincs megjeleníthető esemény!
+          Jelenleg nincs megjeleníthető cikk!
         </Text>
       )}
 
