@@ -118,7 +118,9 @@ export default function MyHeader() {
   const items = links.map((link) => {
     return (
       <Link key={link.label} href={link.link}>
-        <a className={classes.link}>{link.label}</a>
+        <a className={classes.link} onClick={toggle}>
+          {link.label}
+        </a>
       </Link>
     );
   });
