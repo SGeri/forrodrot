@@ -27,6 +27,7 @@ export default async function handler(
         description: req.body.description,
         image: req.body.image,
         content: req.body.content,
+        authorName: session?.user?.name || "Szerkesztő",
       },
     });
     res.status(200).json({ success: true });

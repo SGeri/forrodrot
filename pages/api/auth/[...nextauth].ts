@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "@server";
 
 export const authOptions = {
   providers: [
@@ -15,13 +16,22 @@ export const authOptions = {
         password: { label: "Jelszó", type: "password", placeholder: "jelszó" },
       },
       async authorize(credentials) {
-        if (
-          credentials?.username !== process.env.ADMIN_USERNAME ||
-          credentials?.password !== process.env.ADMIN_PASSWORD
-        )
-          return null;
+        if (!credentials?.username || !credentials?.password) return null;
 
-        return { email: process.env.ADMIN_EMAIL };
+        try {
+          const user = await prisma.user.findFirst({
+            where: {
+              email: credentials.username,
+              password: credentials.password,
+            },
+          });
+
+          if (!user) return null;
+
+          return { id: user?.id, name: user?.name, email: user?.email };
+        } catch (err) {
+          return null;
+        }
       },
     }),
   ],

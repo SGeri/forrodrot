@@ -26,6 +26,7 @@ model Article {
   description  String
   content      String
   publishedAt  DateTime @default(now())
+  authorName   String
 }
 
 model User {

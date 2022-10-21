@@ -59,6 +59,7 @@ const Dashboard = () => {
         {article.title}
       </td>
       <td>{article.slug}</td>
+      <td>{article.authorName}</td>
       <td>{article.description}</td>
       <td>{moment(article.publishedAt).format("YYYY, MM. DD. HH:mm")}</td>
     </tr>
@@ -131,6 +132,7 @@ const Dashboard = () => {
           <tr>
             <th>Cikk címe</th>
             <th>Slug</th>
+            <th>Szerkesztő</th>
             <th>Rövid leírás</th>
             <th>Publikálás dátuma</th>
           </tr>

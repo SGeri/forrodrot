@@ -17,6 +17,7 @@ export interface Article {
   content: string;
   publishedAt?: Date;
   image: string;
+  authorName: string;
 }
 
 export interface Marker {

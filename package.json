@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "setupdb": "npx prisma migrate deploy"
+    "setupdb": "npx prisma migrate deploy",
+    "studio": "npx prisma studio",
+    "adduser": "node src/commands/add_user.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
