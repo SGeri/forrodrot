@@ -58,7 +58,12 @@ const Dashboard = () => {
       <td className={classes.pointer} onClick={() => handleEdit(article)}>
         {article.title}
       </td>
-      <td>{article.slug}</td>
+      <td
+        className={classes.pointer}
+        onClick={() => router.push(`/articles/${article.slug}`)}
+      >
+        {article.slug}
+      </td>
       <td>{article.authorName}</td>
       <td>{article.description}</td>
       <td>{moment(article.publishedAt).format("YYYY, MM. DD. HH:mm")}</td>
