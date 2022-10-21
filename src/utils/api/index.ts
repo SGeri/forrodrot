@@ -1,5 +1,7 @@
 import { Article, Event } from "@types";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 enum Endpoints {
   GetArticle = "/api/articles/get_single",
   GetArticles = "/api/articles/get_all",
@@ -22,32 +24,34 @@ const postOptions = {
 
 // Article related API calls
 export const getArticle = async (slug: string) => {
-  return await fetch(Endpoints.GetArticle, {
+  return await fetch(BASE_URL + Endpoints.GetArticle, {
     ...postOptions,
     body: JSON.stringify({ slug }),
   }).then((res) => res.json());
 };
 
 export const getArticles = async () => {
-  return await fetch(Endpoints.GetArticles).then((res) => res.json());
+  return await fetch(BASE_URL + Endpoints.GetArticles).then((res) =>
+    res.json()
+  );
 };
 
 export const addArticle = async (article: Article) => {
-  return await fetch(Endpoints.AddArticle, {
+  return await fetch(BASE_URL + Endpoints.AddArticle, {
     ...postOptions,
     body: JSON.stringify(article),
   }).then((res) => res.json());
 };
 
 export const editArticles = async (article: Article) => {
-  return await fetch(Endpoints.EditArticle, {
+  return await fetch(BASE_URL + Endpoints.EditArticle, {
     ...postOptions,
     body: JSON.stringify(article),
   }).then((res) => res.json());
 };
 
 export const deleteArticle = async (id: string) => {
-  return await fetch(Endpoints.DeleteArticle, {
+  return await fetch(BASE_URL + Endpoints.DeleteArticle, {
     ...postOptions,
     body: JSON.stringify({ id }),
   }).then((res) => res.json());
@@ -55,25 +59,25 @@ export const deleteArticle = async (id: string) => {
 
 // Article related API calls
 export const getEvents = async () => {
-  return await fetch(Endpoints.GetEvents).then((res) => res.json());
+  return await fetch(BASE_URL + Endpoints.GetEvents).then((res) => res.json());
 };
 
 export const addEvent = async (event: Event) => {
-  return await fetch(Endpoints.AddEvent, {
+  return await fetch(BASE_URL + Endpoints.AddEvent, {
     ...postOptions,
     body: JSON.stringify(event),
   }).then((res) => res.json());
 };
 
 export const editEvent = async (event: Event) => {
-  return await fetch(Endpoints.EditEvent, {
+  return await fetch(BASE_URL + Endpoints.EditEvent, {
     ...postOptions,
     body: JSON.stringify(event),
   }).then((res) => res.json());
 };
 
 export const deleteEvent = async (id: string) => {
-  return await fetch(Endpoints.DeleteEvent, {
+  return await fetch(BASE_URL + Endpoints.DeleteEvent, {
     ...postOptions,
     body: JSON.stringify({ id }),
   }).then((res) => res.json());

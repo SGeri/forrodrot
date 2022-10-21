@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import slugify from "slugify";
 import { createStyles, Center, Loader, Text, Box } from "@mantine/core";
-import { useArticle } from "@utils";
+import { useArticle, API } from "@utils";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -14,7 +14,6 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-// todo fix react internal error
 export default function Article() {
   const { classes } = useStyles();
   const router = useRouter();
@@ -49,4 +48,17 @@ export default function Article() {
       <div dangerouslySetInnerHTML={{ __html: article?.content ?? "Haló" }} />
     </Box>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const slug = context?.params?.name;
+
+  const articles = await API.getArticle(slug);
+
+  // Nested Objects are not supported by getServerSideProps
+  return {
+    props: {
+      articles: JSON.stringify(articles) || [],
+    },
+  };
 }

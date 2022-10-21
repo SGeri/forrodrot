@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
 export default function Articles({ articles }: ArticlesProps) {
   const { classes } = useStyles();
 
-  const cards = articles.map((article) => (
+  const cards = (articles || []).map((article) => (
     <Link href={`/articles/${article.slug}`} key={article.slug}>
       <ArticleCard
         title={article.title}

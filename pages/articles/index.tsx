@@ -1,10 +1,25 @@
 import { Articles } from "@sections";
-import { useArticles } from "@utils";
+import { Article } from "@types";
+import { API } from "@utils";
 
-const ArticlesPage = () => {
-  const { articles } = useArticles();
+interface ArticlesPageProps {
+  articles: string;
+}
 
-  return <Articles articles={articles} />;
+const ArticlesPage = ({ articles }: ArticlesPageProps) => {
+  const articlesJSON = (JSON.parse(articles) || []) as Article[];
+
+  return <Articles articles={articlesJSON} />;
 };
+
+export async function getServerSideProps() {
+  const articles = await API.getArticles();
+
+  return {
+    props: {
+      articles: JSON.stringify(articles) || [],
+    },
+  };
+}
 
 export default ArticlesPage;
