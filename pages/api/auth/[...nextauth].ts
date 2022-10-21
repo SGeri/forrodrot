@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import crypto from "crypto";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@server";
 
@@ -15,14 +16,20 @@ export const authOptions = {
         },
         password: { label: "Jelszó", type: "password", placeholder: "jelszó" },
       },
+
       async authorize(credentials) {
         if (!credentials?.username || !credentials?.password) return null;
+
+        const hash = crypto
+          .createHash("sha256")
+          .update(credentials.password)
+          .digest("hex");
 
         try {
           const user = await prisma.user.findFirst({
             where: {
               email: credentials.username,
-              password: credentials.password,
+              password: hash,
             },
           });
 
