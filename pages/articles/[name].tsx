@@ -9,11 +9,13 @@ interface ArticlePageProps {
 
 const useStyles = createStyles((theme) => ({
   root: {
-    [theme.fn.smallerThan("xs")]: {
+    [theme.fn.smallerThan("sm")]: {
       padding: theme.spacing.md,
     },
-    [theme.fn.largerThan("xs")]: {
+    [theme.fn.largerThan("sm")]: {
       padding: theme.spacing.xl,
+      paddingLeft: "15%",
+      paddingRight: "15%",
     },
   },
 }));

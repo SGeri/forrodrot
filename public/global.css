@@ -7,3 +7,19 @@ a {
   all: unset;
   cursor: pointer;
 }
+
+p {
+  text-align: justify;
+}
+
+.ql-align-right {
+  text-align: right;
+}
+
+.ql-align-center {
+  text-align: center;
+}
+
+.ql-align-left {
+  text-align: left;
+}

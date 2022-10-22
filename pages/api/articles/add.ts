@@ -36,3 +36,11 @@ export default async function handler(
     res.status(500).json({ success: false, error: err as string });
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "40mb",
+    },
+  },
+};
