@@ -58,11 +58,10 @@ const Dashboard = () => {
       <td className={classes.pointer} onClick={() => handleEdit(article)}>
         {article.title}
       </td>
-      <td
-        className={classes.pointer}
-        onClick={() => router.push(`/articles/${article.slug}`)}
-      >
-        {article.slug}
+      <td className={classes.pointer}>
+        <a target="_blank" href="`/articles/${article.slug}`">
+          {article.slug}
+        </a>
       </td>
       <td>{article.authorName}</td>
       <td>{article.description}</td>

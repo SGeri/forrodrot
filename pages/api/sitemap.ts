@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@server";
-import { Article } from "@types";
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,6 +11,9 @@ export default async function handler(
   const articles = await prisma.article.findMany({
     orderBy: {
       publishedAt: "desc",
+    },
+    where: {
+      hidden: false,
     },
   });
 

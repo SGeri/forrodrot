@@ -20,7 +20,7 @@
     "@mantine/next": "^5.5.5",
     "@mantine/notifications": "^5.5.5",
     "@mantine/rte": "^5.5.5",
-    "@prisma/client": "^4.4.0",
+    "@prisma/client": "^4.5.0",
     "@types/nodemailer": "^6.4.6",
     "@types/react-leaflet": "^2.8.2",
     "dayjs": "^1.11.5",
@@ -43,7 +43,7 @@
     "@types/react-dom": "18.0.6",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
-    "prisma": "^4.4.0",
+    "prisma": "^4.5.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }
