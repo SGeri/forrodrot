@@ -6,7 +6,7 @@ const questions = [
     "A Forródrót egy információgyűjtő és -megosztó oldal, ahol minden, a magyar közoktatással kapcsolatos polgári kezdeményezés megtalálható.",
   ],
   [
-    "Mi az olal célja?",
+    "Mi az oldal célja?",
     "Összegyűjteni és egy helyen elérhetővé tenni az országszerte létrejövő, a közoktatás reformjára irányuló polgári kezdeményezésekkel kapcsolatos információkat.",
   ],
   [
