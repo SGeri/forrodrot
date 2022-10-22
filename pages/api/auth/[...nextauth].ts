@@ -10,9 +10,9 @@ export const authOptions = {
 
       credentials: {
         username: {
-          label: "Felhasználónév",
+          label: "Email",
           type: "text",
-          placeholder: "felhasználónév",
+          placeholder: "email",
         },
         password: { label: "Jelszó", type: "password", placeholder: "jelszó" },
       },
