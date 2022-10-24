@@ -14,7 +14,7 @@ const Map = ({ height, children, ...rest }: MapProps) => {
     <MapContainer
       style={{ height, width: "100%" }}
       scrollWheelZoom={false}
-      dragging={width > 767}
+      dragging={true} // TODO: based on viewport size
       {...rest}
     >
       <TileLayer
