@@ -1,3 +1,4 @@
+import Head from "next/head";
 import slugify from "slugify";
 import { createStyles, Center, Text, Box } from "@mantine/core";
 import { API } from "@utils";
@@ -31,9 +32,20 @@ export default function Article({ article }: ArticlePageProps) {
     );
 
   return (
-    <Box className={classes.root}>
-      <div dangerouslySetInnerHTML={{ __html: article?.content ?? "Haló" }} />
-    </Box>
+    <>
+      <Head>
+        <title>{article.title}</title>
+        <meta name="description" content={"Forródrót - " + article.title} />
+      </Head>
+
+      <Box className={classes.root}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: article?.content ?? "A cikknek nem lett megadva tartalom!",
+          }}
+        />
+      </Box>
+    </>
   );
 }
 

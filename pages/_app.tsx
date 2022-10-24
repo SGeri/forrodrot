@@ -24,7 +24,7 @@ function Application({
                 <title>Forródrót</title>
                 <meta
                   name="description"
-                  content="Budapesti tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
+                  content="Budapesti és országos tüntetések a pedagógus tüntetésekkel és sztrájkkal kapcsolatban."
                 />
                 <link rel="icon" href="/fav_logo.ico" />
 
