@@ -12,6 +12,13 @@ p {
   text-align: justify;
 }
 
+img {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  display: block;
+}
+
 .ql-align-right {
   text-align: right;
 }
