@@ -13,6 +13,7 @@ interface ArticleCardProps {
 const useStyles = createStyles((theme) => ({
   card: {
     height: 440,
+    maxWidth: 500,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",

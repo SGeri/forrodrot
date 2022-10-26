@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   createStyles,
@@ -6,6 +7,8 @@ import {
   Title,
   LoadingOverlay,
   Text,
+  Group,
+  Button,
 } from "@mantine/core";
 import { EventCard } from "@components";
 import { Event } from "@types";
@@ -22,9 +25,10 @@ interface PastEventsProps {
 }
 
 export default function PastEvents({ loading, events }: PastEventsProps) {
+  const [limit, setLimit] = useState(9);
   const { classes } = useStyles();
 
-  const cards = (events || []).map((event) => (
+  const cards = (events.slice(0, limit) || []).map((event) => (
     <EventCard key={event.id} {...event} />
   ));
 
@@ -46,6 +50,14 @@ export default function PastEvents({ loading, events }: PastEventsProps) {
         <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
           {cards}
         </SimpleGrid>
+
+        {events.length > limit && (
+          <Group position="center" mt="xl">
+            <Button size="md" onClick={() => setLimit(limit + 3)}>
+              További események betöltése
+            </Button>
+          </Group>
+        )}
       </Container>
     </Box>
   );

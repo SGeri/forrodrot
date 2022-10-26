@@ -42,7 +42,7 @@ const questions = [
   ],
   [
     "Ki finanszírozza a Forródrótot?",
-    "Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik. Az ezzel járó költségeket (domain név, szerver, stb.) maguk fedezik.",
+    "Senki. A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik. Az ezzel járó költségeket maguk fedezik.",
   ],
 ];
 

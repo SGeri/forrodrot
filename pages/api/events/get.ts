@@ -14,7 +14,7 @@ export default async function handler(
   try {
     const events = await prisma.event.findMany({
       orderBy: {
-        date: "desc",
+        date: "asc",
       },
     });
     res.status(200).json({ events });
