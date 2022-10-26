@@ -3,6 +3,7 @@ import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { showNotification } from "@mantine/notifications";
 import { Box, Table, LoadingOverlay, Center, ActionIcon } from "@mantine/core";
 import { PencilPlus } from "tabler-icons-react";
 import { createStyles, Text } from "@mantine/core";
@@ -58,6 +59,8 @@ const Dashboard = () => {
   ));
 
   const handleAdd = () => {
+    setShowForm(false);
+    setEvent(undefined);
     setShowForm(true);
   };
 
@@ -68,6 +71,13 @@ const Dashboard = () => {
 
   const handleDelete = async (id: string) => {
     await API.deleteEvent(id);
+
+    showNotification({
+      title: "Sikeres művelet",
+      message: "Az eseményt sikeresen törölted!",
+      color: "green",
+    });
+
     setShowForm(false);
     refetch();
   };
@@ -77,6 +87,15 @@ const Dashboard = () => {
 
     isEditing ? await API.editEvent(event) : await API.addEvent(event);
 
+    showNotification({
+      title: "Sikeres művelet",
+      message: isEditing
+        ? "Az eseményt sikeresen szerkesztetted!"
+        : "Az eseményt sikeresen hozzáadtad!",
+      color: "green",
+    });
+
+    setEvent(undefined);
     refetch();
   };
 

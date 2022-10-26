@@ -68,10 +68,13 @@ export default function ArticleForm({
   return (
     <Box className={classes.root}>
       <form
-        className={classes.form}
         onSubmit={form.onSubmit((values) =>
           onSubmit({ id: article?.id, ...values })
         )}
+        className={classes.form}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") event.preventDefault();
+        }}
       >
         <Stack>
           <TextInput

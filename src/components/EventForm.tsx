@@ -93,6 +93,9 @@ export default function EventForm({
       <form
         className={classes.form}
         onSubmit={form.onSubmit((values) => onSubmit(processFormData(values)))}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") event.preventDefault();
+        }}
       >
         <Stack>
           <TextInput
