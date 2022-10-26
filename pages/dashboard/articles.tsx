@@ -70,10 +70,14 @@ const Dashboard = () => {
     </tr>
   ));
 
-  const handleAdd = () => {
+  const resetForm = () => {
     setShowForm(false);
     setArticle(undefined);
     setShowForm(true);
+  };
+
+  const handleAdd = () => {
+    resetForm();
   };
 
   const handleEdit = (article: Article) => {
@@ -107,8 +111,8 @@ const Dashboard = () => {
       color: "green",
     });
 
+    !isEditing && setShowForm(false);
     refetch();
-    setArticle(undefined);
   };
 
   return (

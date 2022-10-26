@@ -58,10 +58,14 @@ const Dashboard = () => {
     </tr>
   ));
 
-  const handleAdd = () => {
+  const resetForm = () => {
     setShowForm(false);
     setEvent(undefined);
     setShowForm(true);
+  };
+
+  const handleAdd = () => {
+    resetForm();
   };
 
   const handleEdit = (event: Event) => {
@@ -95,7 +99,7 @@ const Dashboard = () => {
       color: "green",
     });
 
-    setEvent(undefined);
+    !isEditing && setShowForm(false);
     refetch();
   };
 
