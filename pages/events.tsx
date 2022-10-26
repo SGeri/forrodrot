@@ -1,10 +1,15 @@
 import { useEvents } from "@utils";
-import { UpcomingEvents } from "@sections";
+import { UpcomingEvents, PastEvents } from "@sections";
 
 const Events = () => {
-  const { events, loading } = useEvents();
+  const { upcomingEvents, pastEvents, loading } = useEvents();
 
-  return <UpcomingEvents loading={loading} events={events} />;
+  return (
+    <>
+      <UpcomingEvents events={upcomingEvents} loading={loading} />
+      <PastEvents events={pastEvents} loading={loading} />
+    </>
+  );
 };
 
 export default Events;

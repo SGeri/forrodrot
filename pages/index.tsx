@@ -2,7 +2,7 @@ import { Hero, Map, Contact, FAQ, UpcomingEvents, Articles } from "@sections";
 import { useEvents, useArticles } from "@utils";
 
 const Home = () => {
-  const { events, markers, loading: eventLoading } = useEvents();
+  const { upcomingEvents, markers, loading: eventLoading } = useEvents();
   const { articles, loading: articleLoading } = useArticles();
 
   const commonLoading = eventLoading || articleLoading;
@@ -11,11 +11,11 @@ const Home = () => {
     <>
       <Hero />
 
-      <UpcomingEvents loading={commonLoading} events={events} />
-
-      <Map markers={markers} />
+      <UpcomingEvents loading={commonLoading} events={upcomingEvents} />
 
       <Articles articles={articles} />
+
+      <Map markers={markers} />
 
       <FAQ />
 

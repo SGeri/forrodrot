@@ -2,9 +2,9 @@ import { useQuery } from "react-query";
 import { Event } from "@types";
 import { API } from "@utils";
 
-export default function useEvents(showHidden?: boolean) {
+export default function useEvents() {
   const { data, isLoading, refetch } = useQuery("events", () =>
-    API.getEvents(showHidden)
+    API.getEvents()
   );
 
   const markers = (data?.events || []).map((event: Event) => ({
@@ -13,5 +13,17 @@ export default function useEvents(showHidden?: boolean) {
     y: event.locationY,
   }));
 
-  return { loading: isLoading, events: data?.events || [], markers, refetch };
+  const allEvents = data?.events || [];
+  const upcomingEvents =
+    allEvents.filter((event: Event) => !event.hidden) || [];
+  const pastEvents = allEvents.filter((event: Event) => event.hidden) || [];
+
+  return {
+    events: allEvents,
+    upcomingEvents,
+    pastEvents,
+    loading: isLoading,
+    markers,
+    refetch,
+  };
 }

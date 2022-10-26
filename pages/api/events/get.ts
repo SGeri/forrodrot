@@ -11,15 +11,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Response>
 ) {
-  const showHidden = req.body?.showHidden;
-
   try {
     const events = await prisma.event.findMany({
-      ...(!showHidden && {
-        where: {
-          hidden: false,
-        },
-      }),
+      orderBy: {
+        date: "desc",
+      },
     });
     res.status(200).json({ events });
   } catch (err) {

@@ -184,7 +184,7 @@ export default function EventForm({
             </Button>
           )}
           <Checkbox
-            label="Rejtett"
+            label="Korábbi esemény?"
             mt={25}
             {...form.getInputProps("hidden", { type: "checkbox" })}
           />
