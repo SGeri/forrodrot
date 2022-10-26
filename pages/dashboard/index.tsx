@@ -44,7 +44,7 @@ const Dashboard = () => {
     if (!session?.user) router.replace("/api/auth/signin");
   });
 
-  const { events, refetch, loading } = useEvents(true);
+  const { events, refetch, loading } = useEvents();
 
   const rows = events.map((event: Event) => (
     <tr key={event.id}>
