@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Link from "next/link";
+import { useViewportSize } from "@mantine/hooks";
 import {
   Box,
   createStyles,
@@ -11,6 +11,7 @@ import {
   Group,
   Button,
 } from "@mantine/core";
+
 import { EventCard } from "@components";
 import { Event } from "@types";
 
@@ -31,6 +32,9 @@ export default function UpcomingEvents({
 }: UpcomingEventsProps) {
   const [limit, setLimit] = useState(9);
   const { classes } = useStyles();
+  const { width } = useViewportSize();
+
+  const loadMoreSize = width > 767 ? 6 : 3;
 
   const cards = (events.slice(0, limit) || []).map((event) => (
     <EventCard key={event.id} {...event} />
@@ -57,7 +61,7 @@ export default function UpcomingEvents({
 
         {events.length > limit && (
           <Group position="center" mt="xl">
-            <Button size="md" onClick={() => setLimit(limit + 3)}>
+            <Button size="md" onClick={() => setLimit(limit + loadMoreSize)}>
               További események betöltése
             </Button>
           </Group>

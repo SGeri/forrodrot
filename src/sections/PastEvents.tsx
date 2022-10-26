@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useViewportSize } from "@mantine/hooks";
 import {
   Box,
   createStyles,
@@ -27,6 +28,9 @@ interface PastEventsProps {
 export default function PastEvents({ loading, events }: PastEventsProps) {
   const [limit, setLimit] = useState(9);
   const { classes } = useStyles();
+  const { width } = useViewportSize();
+
+  const loadMoreSize = width > 767 ? 6 : 3;
 
   const cards = (events.slice(0, limit) || []).map((event) => (
     <EventCard key={event.id} {...event} />
@@ -53,7 +57,7 @@ export default function PastEvents({ loading, events }: PastEventsProps) {
 
         {events.length > limit && (
           <Group position="center" mt="xl">
-            <Button size="md" onClick={() => setLimit(limit + 3)}>
+            <Button size="md" onClick={() => setLimit(limit + loadMoreSize)}>
               További események betöltése
             </Button>
           </Group>
