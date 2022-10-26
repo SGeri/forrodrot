@@ -24,6 +24,8 @@ export interface Article {
 
 export interface Marker {
   name: string;
+  hidden: boolean;
+  link: string;
   x: number;
   y: number;
 }

@@ -9,6 +9,8 @@ export default function useEvents() {
 
   const markers = (data?.events || []).map((event: Event) => ({
     name: event.title,
+    hidden: event.hidden,
+    link: event.link,
     x: event.locationX,
     y: event.locationY,
   }));
