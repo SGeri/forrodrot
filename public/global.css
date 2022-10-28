@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+a {
+  color: #1971c2;
+}
+
 p {
   text-align: justify;
 }
