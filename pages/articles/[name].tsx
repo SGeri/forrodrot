@@ -1,7 +1,7 @@
-import Head from "next/head";
 import slugify from "slugify";
 import { createStyles, Center, Text, Box } from "@mantine/core";
 import { API } from "@utils";
+import { ArticleHead } from "@components";
 import { Article as ArticleType } from "@types";
 
 interface ArticlePageProps {
@@ -33,10 +33,13 @@ export default function Article({ article }: ArticlePageProps) {
 
   return (
     <>
-      <Head>
-        <title>{article.title}</title>
-        <meta name="description" content={"Forródrót - " + article.title} />
-      </Head>
+      <ArticleHead
+        slug={article.slug}
+        title={article.title}
+        description={article.description}
+        image={article.image}
+        publishedAt={article.publishedAt}
+      />
 
       <Box className={classes.root}>
         <div

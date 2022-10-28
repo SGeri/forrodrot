@@ -1,3 +1,4 @@
+import { PageHead } from "@components";
 import { Articles } from "@sections";
 import { Article } from "@types";
 import { API } from "@utils";
@@ -9,7 +10,13 @@ interface ArticlesPageProps {
 const ArticlesPage = ({ articles }: ArticlesPageProps) => {
   const articlesJSON = (JSON.parse(articles) || []) as Article[];
 
-  return <Articles articles={articlesJSON} />;
+  return (
+    <>
+      <PageHead />
+
+      <Articles articles={articlesJSON} />
+    </>
+  );
 };
 
 export async function getServerSideProps() {
