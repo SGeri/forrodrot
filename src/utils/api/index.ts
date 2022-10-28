@@ -1,4 +1,5 @@
 import { Article, Event } from "@types";
+import { showNotification } from "@mantine/notifications";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
 
@@ -22,6 +23,19 @@ const postOptions = {
   },
 };
 
+const handleError = () => {
+  if (!window) return;
+
+  showNotification({
+    title: "Sikertelen művelet",
+    message:
+      "Keresd fel a fejlesztőket a probléma megoldásához! (DC: SGeri#0731)",
+    color: "red",
+  });
+
+  return false;
+};
+
 // Article related API calls
 export const getArticle = async (slug: string) => {
   return await fetch(BASE_URL + Endpoints.GetArticle, {
@@ -41,21 +55,27 @@ export const addArticle = async (article: Article) => {
   return await fetch(BASE_URL + Endpoints.AddArticle, {
     ...postOptions,
     body: JSON.stringify(article),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const editArticles = async (article: Article) => {
   return await fetch(BASE_URL + Endpoints.EditArticle, {
     ...postOptions,
     body: JSON.stringify(article),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const deleteArticle = async (id: string) => {
   return await fetch(BASE_URL + Endpoints.DeleteArticle, {
     ...postOptions,
     body: JSON.stringify({ id }),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 // Article related API calls
@@ -67,19 +87,25 @@ export const addEvent = async (event: Event) => {
   return await fetch(BASE_URL + Endpoints.AddEvent, {
     ...postOptions,
     body: JSON.stringify(event),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const editEvent = async (event: Event) => {
   return await fetch(BASE_URL + Endpoints.EditEvent, {
     ...postOptions,
     body: JSON.stringify(event),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const deleteEvent = async (id: string) => {
   return await fetch(BASE_URL + Endpoints.DeleteEvent, {
     ...postOptions,
     body: JSON.stringify({ id }),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };

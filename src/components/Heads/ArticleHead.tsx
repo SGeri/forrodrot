@@ -1,7 +1,8 @@
 import Head from "next/head";
 import moment from "moment";
 
-const tags = "";
+const tags =
+  "forródrót,drót,forró,tanár,pedagógus,strike,sztrájk,tüntetés,kormány,belügyminisztérium,oktatás,élőlánc,közoktatás,forradalom,polgári,engedetlenség,iskola,egyetem,demonstráció";
 
 export interface ArticleHeadProps {
   title: string;
@@ -23,8 +24,8 @@ export default function ArticleHead({
       <title>{title}</title>
       <meta name="author" content="Forródrót szerkesztői csapat" />
       <meta name="robots" content="index, follow" />
-      <meta name="exclusiontags" content="TODO" />
-      <meta name="keyword" content="TODO" />
+      <meta name="exclusiontags" content={tags} />
+      <meta name="keyword" content={tags} />
       <meta name="description" content={description} />
 
       <meta property="og:type" content="article" />
@@ -43,7 +44,7 @@ export default function ArticleHead({
         property="article:published_time"
         content={publishedAt?.toString() || new Date().toString()}
       />
-      <meta property="article:tag" content="TODO" />
+      <meta property="article:tag" content={tags} />
 
       <meta
         itemProp="datePublished"

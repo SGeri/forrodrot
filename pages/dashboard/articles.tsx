@@ -16,7 +16,7 @@ import {
 } from "@mantine/core";
 import { Article } from "@types";
 import { API, useArticles } from "@utils";
-import { ArticleForm } from "@components";
+import { ArticleForm, PageHead } from "@components";
 
 const useStyles = createStyles((theme) => ({
   actionsContainer: {
@@ -86,7 +86,9 @@ const Dashboard = () => {
   };
 
   const handleDelete = async (id: string) => {
-    await API.deleteArticle(id);
+    const res = await API.deleteArticle(id);
+
+    if (!res) return;
 
     showNotification({
       title: "Sikeres művelet",
@@ -101,7 +103,11 @@ const Dashboard = () => {
   const handleFormSubmit = async (article: Article) => {
     const isEditing = !!article.id;
 
-    isEditing ? await API.editArticles(article) : await API.addArticle(article);
+    const res = isEditing
+      ? await API.editArticles(article)
+      : await API.addArticle(article);
+
+    if (!res) return;
 
     showNotification({
       title: "Sikeres művelet",
@@ -116,57 +122,61 @@ const Dashboard = () => {
   };
 
   return (
-    <Box px="xl">
-      <LoadingOverlay visible={loading} overlayBlur={2} />
+    <>
+      <PageHead />
 
-      <Center>
-        <Box className={classes.actionsContainer} onClick={handleAdd}>
-          <ActionIcon variant="default" size={30} color="green">
-            <PencilPlus />
-          </ActionIcon>
-          <Text m="md" weight={700}>
-            Hozzáadás
-          </Text>
-        </Box>
-        <Link href="/dashboard">
-          <Box className={classes.actionsContainer}>
+      <Box px="xl">
+        <LoadingOverlay visible={loading} overlayBlur={2} />
+
+        <Center>
+          <Box className={classes.actionsContainer} onClick={handleAdd}>
             <ActionIcon variant="default" size={30} color="green">
-              <CalendarEvent />
+              <PencilPlus />
             </ActionIcon>
             <Text m="md" weight={700}>
-              Események
+              Hozzáadás
             </Text>
           </Box>
-        </Link>
-      </Center>
+          <Link href="/dashboard">
+            <Box className={classes.actionsContainer}>
+              <ActionIcon variant="default" size={30} color="green">
+                <CalendarEvent />
+              </ActionIcon>
+              <Text m="md" weight={700}>
+                Események
+              </Text>
+            </Box>
+          </Link>
+        </Center>
 
-      {showForm && (
-        <ArticleForm
-          key={article?.id}
-          article={article}
-          onSubmit={(data) => handleFormSubmit(data)}
-          onDelete={(id) => handleDelete(id)}
-        />
-      )}
+        {showForm && (
+          <ArticleForm
+            key={article?.id}
+            article={article}
+            onSubmit={(data) => handleFormSubmit(data)}
+            onDelete={(id) => handleDelete(id)}
+          />
+        )}
 
-      <Table
-        highlightOnHover
-        striped
-        horizontalSpacing={15}
-        verticalSpacing={15}
-      >
-        <thead>
-          <tr>
-            <th>Cikk címe</th>
-            <th>Slug</th>
-            <th>Szerkesztő</th>
-            <th>Rövid leírás</th>
-            <th>Publikálás dátuma</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
-    </Box>
+        <Table
+          highlightOnHover
+          striped
+          horizontalSpacing={15}
+          verticalSpacing={15}
+        >
+          <thead>
+            <tr>
+              <th>Cikk címe</th>
+              <th>Slug</th>
+              <th>Szerkesztő</th>
+              <th>Rövid leírás</th>
+              <th>Publikálás dátuma</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </Box>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import { PencilPlus } from "tabler-icons-react";
 import { createStyles, Text } from "@mantine/core";
 import { Event } from "@types";
 import { useEvents, API } from "@utils";
-import { EventForm } from "@components";
+import { EventForm, PageHead } from "@components";
 
 const useStyles = createStyles((theme) => ({
   actionsContainer: {
@@ -74,7 +74,9 @@ const Dashboard = () => {
   };
 
   const handleDelete = async (id: string) => {
-    await API.deleteEvent(id);
+    const res = await API.deleteEvent(id);
+
+    if (!res) return;
 
     showNotification({
       title: "Sikeres művelet",
@@ -89,7 +91,11 @@ const Dashboard = () => {
   const handleFormSubmit = async (event: Event) => {
     const isEditing = !!event.id;
 
-    isEditing ? await API.editEvent(event) : await API.addEvent(event);
+    const res = isEditing
+      ? await API.editEvent(event)
+      : await API.addEvent(event);
+
+    if (!res) return;
 
     showNotification({
       title: "Sikeres művelet",
@@ -104,56 +110,60 @@ const Dashboard = () => {
   };
 
   return (
-    <Box px="xl">
-      <LoadingOverlay visible={loading} overlayBlur={2} />
+    <>
+      <PageHead />
 
-      <Center>
-        <Box className={classes.actionsContainer} onClick={handleAdd}>
-          <ActionIcon variant="default" size={30} color="green">
-            <PencilPlus />
-          </ActionIcon>
-          <Text m="md" weight={700}>
-            Hozzáadás
-          </Text>
-        </Box>
-        <Link href="/dashboard/articles">
-          <Box className={classes.actionsContainer}>
+      <Box px="xl">
+        <LoadingOverlay visible={loading} overlayBlur={2} />
+
+        <Center>
+          <Box className={classes.actionsContainer} onClick={handleAdd}>
             <ActionIcon variant="default" size={30} color="green">
               <PencilPlus />
             </ActionIcon>
             <Text m="md" weight={700}>
-              Cikkek
+              Hozzáadás
             </Text>
           </Box>
-        </Link>
-      </Center>
+          <Link href="/dashboard/articles">
+            <Box className={classes.actionsContainer}>
+              <ActionIcon variant="default" size={30} color="green">
+                <PencilPlus />
+              </ActionIcon>
+              <Text m="md" weight={700}>
+                Cikkek
+              </Text>
+            </Box>
+          </Link>
+        </Center>
 
-      {showForm && (
-        <EventForm
-          key={event?.id}
-          event={event}
-          onSubmit={(data) => handleFormSubmit(data)}
-          onDelete={(id) => handleDelete(id)}
-        />
-      )}
+        {showForm && (
+          <EventForm
+            key={event?.id}
+            event={event}
+            onSubmit={(data) => handleFormSubmit(data)}
+            onDelete={(id) => handleDelete(id)}
+          />
+        )}
 
-      <Table
-        highlightOnHover
-        striped
-        horizontalSpacing={15}
-        verticalSpacing={15}
-      >
-        <thead>
-          <tr>
-            <th>Megnevezése</th>
-            <th>Dátum és időpont</th>
-            <th>Helyszín</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </Table>
-    </Box>
+        <Table
+          highlightOnHover
+          striped
+          horizontalSpacing={15}
+          verticalSpacing={15}
+        >
+          <thead>
+            <tr>
+              <th>Megnevezése</th>
+              <th>Dátum és időpont</th>
+              <th>Helyszín</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </Box>
+    </>
   );
 };
 
