@@ -3,11 +3,6 @@ body {
   padding: 0;
 }
 
-a {
-  all: unset;
-  cursor: pointer;
-}
-
 p {
   text-align: justify;
 }
