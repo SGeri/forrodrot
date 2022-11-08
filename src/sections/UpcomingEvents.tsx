@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { useViewportSize } from "@mantine/hooks";
 import {
   Box,
@@ -45,9 +46,11 @@ export default function UpcomingEvents({
       <Container py="xl">
         <LoadingOverlay visible={loading} overlayBlur={2} />
 
-        <Title align="center" mb="xl">
-          Közelgő rendezvények
-        </Title>
+        <Link href="/events">
+          <Title align="center" mb="xl">
+            Közelgő rendezvények
+          </Title>
+        </Link>
 
         {cards.length <= 0 && (
           <Text weight="bold" align="center">

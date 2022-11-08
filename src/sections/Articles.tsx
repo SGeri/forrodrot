@@ -39,9 +39,11 @@ export default function Articles({ articles }: ArticlesProps) {
 
   return (
     <Box className={classes.root}>
-      <Title align="center" className={classes.title}>
-        Legfrissebb cikkeink
-      </Title>
+      <Link href="/events">
+        <Title align="center" className={classes.title}>
+          Legfrissebb cikkeink
+        </Title>
+      </Link>
 
       {cards.length <= 0 && (
         <Text weight="bold" align="center">
