@@ -12,7 +12,7 @@ const questions = [
   [
     "Mi az oldalon megjelenő kezdeményezések célja?",
     `
-    A Forródrót csupán információ-gyűjtő és megosztó oldal, az egyes kezdeményezések szervezői és résztvevői más-más problémákra hívják fel a figyelmet és várnak megoldást. Egy azonban biztos: a magyar közoktatás válságban van, és sürgős változtatások nélkül összeomlik.
+    A Forródrót csupán információ-gyűjtő és megosztó oldal, az egyes kezdeményezések szervezői és résztvevői más-más problémákra hívják fel a figyelmet és várnak megoldást. Egy azonban biztos: a magyar közoktatás válságban van és sürgős változtatások nélkül összeomlik.
     <br /><br />
     <strong>Mit kíván a magyar pedagógus:</strong>
     <br /><br />
@@ -34,8 +34,8 @@ const questions = [
     "Mérges, elkeseredett, aggódó diákok, akiknek elegük lett a magyar közoktatásban rájuk és tanáraikra nehezedő terhekből, megkötésekből és az intézményekben őket körülvevő állapotokból.",
   ],
   [
-    "Kik finanszírozza a Forródrótot?",
-    "A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik az oldalt. Az ezzel járó költségeket maguk fedezik.",
+    "Ki finanszírozza a Forródrótot?",
+    "A Forródrótot a készítő diákok nem megrendelésre, hanem belső késztetésből, egy jobb jövő reményében hozták létre és frissítik. Az ezzel járó költségeket maguk fedezik.",
   ],
   [
     // TODO when backlogging is implemented, change answer to this
