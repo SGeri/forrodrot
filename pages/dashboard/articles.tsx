@@ -60,7 +60,7 @@ const Dashboard = () => {
         {article.title}
       </td>
       <td className={classes.pointer}>
-        <a target="_blank" href={`/articles/${article.slug}`}>
+        <a target="_blank" rel="noreferrer" href={`/articles/${article.slug}`}>
           {article.slug}
         </a>
       </td>

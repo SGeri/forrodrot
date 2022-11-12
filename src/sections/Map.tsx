@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { Center } from "@mantine/core";
 import { createStyles, Box, Title } from "@mantine/core";
 import { Map, Marker } from "@components";
 import { Marker as MarkerType } from "@types";
@@ -43,6 +45,47 @@ export default function MapSection({ markers }: UpcomingEventsProps) {
       >
         {markerComponents}
       </Map>
+
+      <Center pt="md">
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
+          <Image
+            src="/marker-icon-blue.png"
+            alt="blue marker"
+            width={20}
+            height={33}
+          />
+          <Title size={18} pl="xs">
+            Közelgő események
+          </Title>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+          }}
+        >
+          <Image
+            src="/marker-icon-grey.png"
+            alt="grey marker"
+            width={20}
+            height={33}
+          />
+          <Title size={18} pl="xs">
+            Korábbi események
+          </Title>
+        </Box>
+      </Center>
     </Box>
   );
 }
