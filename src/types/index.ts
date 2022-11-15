@@ -29,3 +29,15 @@ export interface Marker {
   x: number;
   y: number;
 }
+
+export interface Participant {
+  school: string;
+  teachers: string;
+  coordinates: string;
+  isApproved?: boolean;
+}
+
+export interface ParticipantsTotal {
+  schools: number;
+  participants: number;
+}

@@ -10,6 +10,16 @@ declare global {
 
       // Public Base URL
       PUBLIC_BASE_URL: string | undefined;
+
+      // Spreadsheet
+      PARTICIPANTS_SPREADSHEET_ID: string | undefined;
     }
+  }
+}
+
+declare module "public-google-sheets-parser" {
+  export default class PublicGoogleSheetsParser {
+    constructor(spreadsheetId: string);
+    parse(): Promise<any>;
   }
 }

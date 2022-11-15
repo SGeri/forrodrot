@@ -14,6 +14,8 @@ enum Endpoints {
   AddEvent = "/api/events/add",
   EditEvent = "/api/events/edit",
   DeleteEvent = "/api/events/delete",
+
+  GetParticipants = "/api/participants",
 }
 
 const postOptions = {
@@ -41,14 +43,18 @@ export const getArticle = async (slug: string) => {
   return await fetch(BASE_URL + Endpoints.GetArticle, {
     ...postOptions,
     body: JSON.stringify({ slug }),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const getArticles = async (showHidden?: boolean) => {
   return await fetch(BASE_URL + Endpoints.GetArticles, {
     ...postOptions,
     body: JSON.stringify({ showHidden }),
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const addArticle = async (article: Article) => {
@@ -80,7 +86,9 @@ export const deleteArticle = async (id: string) => {
 
 // Article related API calls
 export const getEvents = async () => {
-  return await fetch(BASE_URL + Endpoints.GetEvents).then((res) => res.json());
+  return await fetch(BASE_URL + Endpoints.GetEvents)
+    .then((res) => res.json())
+    .catch(handleError);
 };
 
 export const addEvent = async (event: Event) => {
@@ -106,6 +114,12 @@ export const deleteEvent = async (id: string) => {
     ...postOptions,
     body: JSON.stringify({ id }),
   })
+    .then((res) => res.json())
+    .catch(handleError);
+};
+
+export const getParticipants = async () => {
+  return await fetch(BASE_URL + Endpoints.GetParticipants)
     .then((res) => res.json())
     .catch(handleError);
 };
