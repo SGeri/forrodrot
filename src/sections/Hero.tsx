@@ -10,10 +10,11 @@ import {
 
 const useStyles = createStyles((theme) => ({
   root: {
+    position: "relative",
     backgroundColor: "#11284b",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url("hero_bg.jpg")`,
+    backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url("hero_bg_v2.jpeg")`,
     paddingTop: theme.spacing.xl * 3,
     paddingBottom: theme.spacing.xl * 3,
   },
@@ -78,6 +79,14 @@ const useStyles = createStyles((theme) => ({
       width: "100%",
     },
   },
+
+  credit: {
+    position: "absolute",
+    color: theme.white,
+    right: 0,
+    bottom: 0,
+    opacity: 0.7,
+  },
 }));
 
 export default function Hero() {
@@ -131,6 +140,10 @@ export default function Hero() {
           </div>
         </div>
       </Container>
+
+      <Text className={classes.credit} p="xs">
+        Németh Dániel / 444.hu
+      </Text>
     </div>
   );
 }
