@@ -1,14 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
-import { Participant } from "@types";
+import {
+  Participant,
+  ParticipantsListElement,
+  ParticipantsTotal,
+} from "@types";
 
 interface Response {
   error?: string;
-  total: {
-    schools: number;
-    participants: number;
-  };
-  list: string[];
+  total: ParticipantsTotal;
+  list: ParticipantsListElement[];
 }
 
 const itemKeys: { [key: string]: string } = {
@@ -38,7 +39,10 @@ export default async function handler(
       ),
     };
 
-    const list = parsedItems.map(({ school }: Participant) => school);
+    const list = parsedItems.map(({ school, coordinates }: Participant) => ({
+      school,
+      coordinates,
+    }));
 
     res.status(200).json({ total, list });
   } catch (err) {

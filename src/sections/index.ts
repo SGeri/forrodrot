@@ -6,3 +6,4 @@ export { default as PastEvents } from "./PastEvents";
 export { default as Map } from "./Map";
 export { default as Articles } from "./Articles";
 export { default as Participants } from "./Participants";
+export { default as ParticipantsMap } from "./ParticipantsMap";

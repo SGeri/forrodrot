@@ -92,7 +92,7 @@ const useStyles = createStyles((theme) => ({
 
 const guestLinkingOptions = [
   { label: "Események", link: "/events" },
-  { label: "Résztvevők", link: "/participants" },
+  { label: "Munkabeszüntetés", link: "/participants" },
   { label: "Térkép", link: "/map" },
   { label: "Cikkek", link: "/articles" },
 ];

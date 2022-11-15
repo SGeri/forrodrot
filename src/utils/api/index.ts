@@ -26,7 +26,7 @@ const postOptions = {
 };
 
 const handleError = () => {
-  if (!window) return;
+  if (typeof window === "undefined") return;
 
   showNotification({
     title: "Sikertelen művelet",

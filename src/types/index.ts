@@ -24,8 +24,8 @@ export interface Article {
 
 export interface Marker {
   name: string;
-  hidden: boolean;
-  link: string;
+  hidden?: boolean;
+  link?: string;
   x: number;
   y: number;
 }
@@ -40,4 +40,9 @@ export interface Participant {
 export interface ParticipantsTotal {
   schools: number;
   participants: number;
+}
+
+export interface ParticipantsListElement {
+  school: string;
+  coordinates: string;
 }

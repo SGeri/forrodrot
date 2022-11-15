@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { API } from "@utils";
-import { ParticipantsTotal } from "@types";
+import { ParticipantsListElement, ParticipantsTotal } from "@types";
 
 export default function useParticipants() {
   const { data, isLoading } = useQuery("participants", () =>
@@ -12,7 +12,7 @@ export default function useParticipants() {
       schools: 0,
       participants: 0,
     }) as ParticipantsTotal,
-    list: (data?.list ?? []) as string[],
+    list: (data?.list ?? []) as ParticipantsListElement[],
     loading: isLoading,
   };
 }

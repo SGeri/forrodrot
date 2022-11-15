@@ -18,4 +18,13 @@ const PassiveIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-export { ActiveIcon, PassiveIcon };
+const SchoolIcon = new L.Icon({
+  iconUrl: "marker-icon-yellow.png",
+  shadowUrl: "marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+export { ActiveIcon, PassiveIcon, SchoolIcon };
