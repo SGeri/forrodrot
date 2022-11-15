@@ -41,7 +41,7 @@ export default function Articles({ articles }: ArticlesProps) {
     <Box className={classes.root}>
       <Link href="/events">
         <Title align="center" className={classes.title}>
-          Legfrissebb cikkeink
+          Forródrót cikkek
         </Title>
       </Link>
 
