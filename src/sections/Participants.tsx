@@ -70,7 +70,7 @@ export default function Participants({
             duration={3}
           />
           <CounterBox
-            label="Résztvevő iskolák"
+            label="Részt vevő iskolák"
             value={total.schools}
             duration={2}
           />
