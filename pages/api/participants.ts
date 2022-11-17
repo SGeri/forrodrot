@@ -31,15 +31,21 @@ export default async function handler(
     const items = await SheetsParser.parse();
     const parsedItems = parseItems(items);
 
+    const sortedItems = parsedItems.sort((a, b) => {
+      if (a.school < b.school) return -1;
+      if (a.school > b.school) return 1;
+      return 0;
+    });
+
     const total = {
-      schools: parsedItems.length,
-      participants: parsedItems.reduce(
+      schools: sortedItems.length,
+      participants: sortedItems.reduce(
         (acc, item) => acc + parseInt(item.teachers),
         0
       ),
     };
 
-    const list = parsedItems.map(({ school, coordinates }: Participant) => ({
+    const list = sortedItems.map(({ school, coordinates }: Participant) => ({
       school,
       coordinates,
     }));
