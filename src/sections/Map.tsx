@@ -32,7 +32,7 @@ export default function MapSection({ markers }: UpcomingEventsProps) {
   ));
 
   return (
-    <Box className={classes.root}>
+    <Box id="map" className={classes.root}>
       <Title weight={700} align="center" mb="xl">
         Eseménytérkép
       </Title>

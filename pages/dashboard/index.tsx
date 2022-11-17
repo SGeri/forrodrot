@@ -9,7 +9,7 @@ import { PencilPlus } from "tabler-icons-react";
 import { createStyles, Text } from "@mantine/core";
 import { Event } from "@types";
 import { useEvents, API } from "@utils";
-import { EventForm, PageHead } from "@components";
+import { EventForm, PageHead, TableHeader } from "@components";
 
 const useStyles = createStyles((theme) => ({
   actionsContainer: {
@@ -47,16 +47,22 @@ const Dashboard = () => {
 
   const { events, refetch, loading } = useEvents();
 
-  const rows = events.map((event: Event) => (
-    <tr key={event.id}>
-      <td className={classes.pointer} onClick={() => handleEdit(event)}>
-        {event.title}
-      </td>
-      <td>{moment(event.date).format("YYYY, MM. DD. HH:mm")}</td>
-      <td>{event.locationName}</td>
-      <td>{event.link}</td>
-    </tr>
-  ));
+  const rows = events.map((event: Event) => {
+    const link =
+      event.link.length > 40 ? event.link.substring(0, 40) + "..." : event.link;
+
+    return (
+      <tr key={event.id}>
+        <td className={classes.pointer} onClick={() => handleEdit(event)}>
+          {event.title}
+        </td>
+        <td>{event.hidden ? "Rejtett" : "Publikus"}</td>
+        <td>{moment(event.date).format("YYYY. MM. DD. HH:mm")}</td>
+        <td>{event.locationName}</td>
+        <td>{link}</td>
+      </tr>
+    );
+  });
 
   const resetForm = () => {
     setShowForm(false);
@@ -154,10 +160,11 @@ const Dashboard = () => {
         >
           <thead>
             <tr>
-              <th>Megnevezése</th>
-              <th>Dátum és időpont</th>
-              <th>Helyszín</th>
-              <th>Link</th>
+              <TableHeader>Megnevezése</TableHeader>
+              <TableHeader min={80}>Státusz</TableHeader>
+              <TableHeader min={150}>Dátum és időpont</TableHeader>
+              <TableHeader>Helyszín</TableHeader>
+              <TableHeader>Link</TableHeader>
             </tr>
           </thead>
           <tbody>{rows}</tbody>

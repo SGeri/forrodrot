@@ -20,6 +20,13 @@ const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: theme.colors.dark[9],
   },
+  titleWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: theme.spacing.md,
+  },
 }));
 
 interface UpcomingEventsProps {
@@ -46,11 +53,15 @@ export default function UpcomingEvents({
       <Container py="xl">
         <LoadingOverlay visible={loading} overlayBlur={2} />
 
-        <Link href="/events">
-          <Title align="center" mb="xl">
-            Közelgő rendezvények
-          </Title>
-        </Link>
+        <Box className={classes.titleWrapper} mb="xl">
+          <Link href="/events">
+            <Title align="center">Közelgő rendezvények</Title>
+          </Link>
+
+          <Link href="/#map" scroll={false}>
+            <Button size="md">Térkép</Button>
+          </Link>
+        </Box>
 
         {cards.length <= 0 && (
           <Text weight="bold" align="center">
