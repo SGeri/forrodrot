@@ -64,15 +64,11 @@ export default function Participants({
 
       <Box sx={{ maxWidth: "450px", margin: "auto" }}>
         <SimpleGrid cols={2} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
+          <CounterBox label="Iskola" value={total.schools} duration={2} />
           <CounterBox
-            label="Engedetlen tanárok"
+            label="Részt vevő tanár"
             value={total.participants}
             duration={3}
-          />
-          <CounterBox
-            label="Részt vevő iskolák"
-            value={total.schools}
-            duration={2}
           />
         </SimpleGrid>
       </Box>
