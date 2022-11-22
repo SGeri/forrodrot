@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CountUp from "react-countup";
 import {
   Title,
@@ -7,6 +8,7 @@ import {
   SimpleGrid,
   Loader,
   Center,
+  Button,
 } from "@mantine/core";
 import { ParticipantsTotal } from "@types";
 
@@ -72,6 +74,12 @@ export default function Participants({
           />
         </SimpleGrid>
       </Box>
+
+      <Center pt="md">
+        <Link href="/participants#map" scroll={false}>
+          <Button size="md">Iskolák térképe</Button>
+        </Link>
+      </Center>
 
       <Title align="center" mt={50}>
         Csatlakozó iskolák

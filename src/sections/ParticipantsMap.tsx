@@ -30,9 +30,9 @@ export default function MapSection({ markers }: ParticipantsMapProps) {
   ));
 
   return (
-    <Box className={classes.root}>
+    <Box id="map" className={classes.root}>
       <Title weight={700} align="center" mb="xl">
-        Iskolák
+        Iskolák térképe
       </Title>
 
       <Map
