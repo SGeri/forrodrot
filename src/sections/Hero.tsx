@@ -135,7 +135,7 @@ export default function Hero() {
                 size="xl"
                 mt={40}
               >
-                Követelések: A 9 pont
+                Követelések: 9 pont
               </Button>
             </Link>
           </div>
