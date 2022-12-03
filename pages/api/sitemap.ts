@@ -36,31 +36,31 @@ export default async function handler(
   
   <url>
     <loc>https://forrodrot.com/</loc>
-    <lastmod>2022-10-21T14:27:41+00:00</lastmod>
+    <lastmod>2022-12-03T21:40:00+00:00</lastmod>
     <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://forrodrot.com/demands</loc>
+    <lastmod>2022-12-03T21:16:00+00:00</lastmod>
+    <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://forrodrot.com/articles</loc>
-    <lastmod>2022-10-21T14:27:41+00:00</lastmod>
+    <lastmod>2022-12-03T21:40:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
     <loc>https://forrodrot.com/participants</loc>
-    <lastmod>2022-11-15T17:16:41+00:00</lastmod>
+    <lastmod>2022-12-03T21:40:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://forrodrot.com/events</loc>
-    <lastmod>2022-10-21T14:27:41+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
-  
-  <url>
-    <loc>https://forrodrot.com/map</loc>
-    <lastmod>2022-10-21T14:27:41+00:00</lastmod>
+    <lastmod>2022-12-03T21:40:00+00:00</lastmod>
     <priority>0.80</priority>
   </url>
 

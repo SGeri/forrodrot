@@ -91,9 +91,9 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const guestLinkingOptions = [
+  { label: "A 9 pont", link: "/demands" },
   { label: "Események", link: "/events" },
   { label: "Munkabeszüntetés", link: "/participants" },
-  { label: "Térkép", link: "/map" },
   { label: "Cikkek", link: "/articles" },
 ];
 

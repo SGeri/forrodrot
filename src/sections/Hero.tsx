@@ -126,7 +126,7 @@ export default function Hero() {
               Minden közoktatással kapcsolatos polgári kezdeményezés egy helyen.
             </Text>
 
-            <Link href="/participants">
+            <Link href="/demands">
               <Button
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
@@ -134,7 +134,7 @@ export default function Hero() {
                 className={classes.control}
                 mt={40}
               >
-                A CSEND NEM REND
+                Követelések: A 9 pont
               </Button>
             </Link>
           </div>
