@@ -22,16 +22,16 @@ const postOptions = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
 };
 
-const handleError = () => {
+const handleError = (e: any) => {
   if (typeof window === "undefined") return;
 
   showNotification({
     title: "Sikertelen művelet",
-    message:
-      "Keresd fel a fejlesztőket a probléma megoldásához! (DC: SGeri#0731)",
+    message: `Keresd fel a fejlesztőket a probléma megoldásához! (DC: SGeri#0731) ${e}`,
     color: "red",
   });
 
