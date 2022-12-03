@@ -77,6 +77,7 @@ const useStyles = createStyles((theme) => ({
 
     [theme.fn.smallerThan("md")]: {
       width: "100%",
+      fontSize: 18,
     },
   },
 
@@ -128,10 +129,10 @@ export default function Hero() {
 
             <Link href="/demands">
               <Button
-                variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}
-                size="xl"
                 className={classes.control}
+                gradient={{ from: "pink", to: "yellow" }}
+                variant="gradient"
+                size="xl"
                 mt={40}
               >
                 Követelések: A 9 pont
