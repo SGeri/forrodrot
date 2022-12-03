@@ -24,6 +24,8 @@ const useStyles = createStyles((theme) => ({
     top: 0,
     left: 0,
     opacity: 0.05,
+    zIndex: -1,
+    userSelect: "none",
   },
 
   orgs: {
