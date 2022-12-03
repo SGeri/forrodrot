@@ -4,7 +4,7 @@ import { useEvents, useArticles } from "@utils";
 
 const Home = () => {
   const { upcomingEvents, markers, loading: eventLoading } = useEvents();
-  const { articles, loading: articleLoading } = useArticles();
+  const { articles, loading: articleLoading } = useArticles(false, true);
 
   const commonLoading = eventLoading || articleLoading;
 

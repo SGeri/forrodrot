@@ -48,10 +48,10 @@ export const getArticle = async (slug: string) => {
     .catch(handleError);
 };
 
-export const getArticles = async (showHidden?: boolean) => {
+export const getArticles = async (showHidden?: boolean, short?: boolean) => {
   return await fetch(BASE_URL + Endpoints.GetArticles, {
     ...postOptions,
-    body: JSON.stringify({ showHidden }),
+    body: JSON.stringify({ showHidden, short }),
   })
     .then((res) => res.json())
     .catch(handleError);
