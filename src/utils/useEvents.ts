@@ -18,7 +18,10 @@ export default function useEvents() {
   const allEvents = data?.events || [];
   const upcomingEvents =
     allEvents.filter((event: Event) => !event.hidden) || [];
-  const pastEvents = allEvents.filter((event: Event) => event.hidden) || [];
+  const pastEvents =
+    allEvents
+      .filter((event: Event) => event.hidden)
+      .sort((e1: Event, e2: Event) => Number(e2.date) - Number(e1.date)) || [];
 
   return {
     events: allEvents,
