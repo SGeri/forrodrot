@@ -1,6 +1,6 @@
 import moment from "moment";
 import Link from "next/link";
-import { createStyles, Paper, Text, Title } from "@mantine/core";
+import { Box, createStyles, Paper, Text, Title } from "@mantine/core";
 
 interface ArticleCardProps {
   title: string;
@@ -14,33 +14,53 @@ const useStyles = createStyles((theme) => ({
   card: {
     height: 440,
     maxWidth: 500,
+    position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    alignItems: "flex-start",
     backgroundSize: "cover",
     backgroundPosition: "center",
     cursor: "pointer",
+  },
+
+  background: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    filter: "blur(3px)",
+    borderRadius: theme.radius.lg,
+    zIndex: 0,
+  },
+
+  overlay: {
+    zIndex: 1,
   },
 
   title: {
     fontFamily: `Greycliff CF ${theme.fontFamily}`,
     fontWeight: 900,
     color: theme.white,
-    lineHeight: 1.2,
-    fontSize: 32,
+    textShadow: "1.5px 1.5px black",
     marginTop: theme.spacing.xs,
-    textShadow: "2px 2px black",
+    wordWrap: "break-word",
+    lineHeight: 1.2,
   },
 
-  category: {
+  timestamp: {
     color: theme.white,
     opacity: 0.9,
     fontWeight: 700,
-    textShadow: "2px 2px black",
+    textShadow: "1.5px 1.5px black",
   },
 
-  description: { color: theme.colors.gray[2], textShadow: "1px 1px black" },
+  description: {
+    color: theme.colors.gray[2],
+    fontWeight: 500,
+    textShadow: "1px 1px black",
+    wordWrap: "break-word",
+  },
 }));
 
 export default function ArticleCard({
@@ -54,25 +74,27 @@ export default function ArticleCard({
 
   return (
     <Link href={link}>
-      <Paper
-        shadow="md"
-        p="xl"
-        radius="md"
-        sx={{ backgroundImage: `url(${image})` }}
-        className={classes.card}
-        mb="xl"
-      >
-        <div>
-          <Text className={classes.category} size="md">
+      <Paper className={classes.card} radius="lg" shadow="md" p="md" mb="xl">
+        <Box
+          className={classes.background}
+          sx={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image})`,
+          }}
+        />
+
+        <Box className={classes.overlay}>
+          <Text className={classes.timestamp} size="md">
             {moment(publishedAt).format("YYYY, MM. DD. HH:mm")}
           </Text>
-          <Title order={3} className={classes.title}>
-            {title}
+          <Title className={classes.title} order={3} size={32} mb="xs">
+            {title}Alapfogalmak
           </Title>
-          <Text className={classes.description} size="md">
-            {description}
+          <Text className={classes.description} size={22}>
+            {description}Gyakran halljuk, hogy sztrájk, polgári engedetlenség,
+            Klebelsberg, de mit is jelentenek ezek a kifejezések pontosan? Ebben
+            a cikkben összefoglaltuk.
           </Text>
-        </div>
+        </Box>
       </Paper>
     </Link>
   );
