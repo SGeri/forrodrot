@@ -34,6 +34,7 @@ const useStyles = createStyles((theme) => ({
     zIndex: 0,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    backgroundPosition: "center",
   },
 
   overlay: {
