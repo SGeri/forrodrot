@@ -32,6 +32,8 @@ const useStyles = createStyles((theme) => ({
     filter: "blur(3px)",
     borderRadius: theme.radius.lg,
     zIndex: 0,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
 
   overlay: {
@@ -87,12 +89,10 @@ export default function ArticleCard({
             {moment(publishedAt).format("YYYY, MM. DD. HH:mm")}
           </Text>
           <Title className={classes.title} order={3} size={32} mb="xs">
-            {title}Alapfogalmak
+            {title}
           </Title>
           <Text className={classes.description} size={22}>
-            {description}Gyakran halljuk, hogy sztrájk, polgári engedetlenség,
-            Klebelsberg, de mit is jelentenek ezek a kifejezések pontosan? Ebben
-            a cikkben összefoglaltuk.
+            {description}
           </Text>
         </Box>
       </Paper>
