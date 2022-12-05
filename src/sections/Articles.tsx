@@ -51,7 +51,13 @@ export default function Articles({ articles }: ArticlesProps) {
         </Text>
       )}
 
-      <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
+      <SimpleGrid
+        cols={3}
+        breakpoints={[
+          { maxWidth: "sm", cols: 1 },
+          { maxWidth: "md", cols: 2 },
+        ]}
+      >
         {cards}
       </SimpleGrid>
     </Box>
