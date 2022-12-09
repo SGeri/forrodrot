@@ -16,18 +16,15 @@ const questions = [
     <br /><br />
     <strong>Mit kíván a magyar pedagógus:</strong>
     <br /><br />
-    1. Kivánjuk a magyar oktatás szabadságát!<br />
-    2. Önálló oktatási minisztériumot!<br />
-    3. Szabad tankönyvválasztást!<br />
-    4. Ideológiamentes nemzeti alaptantervet!<br />
-    5. Megfelelő munkakörülményeket!<br />
-    6. Csökkentsék a tanárok és a diákok terheit!<br />
-    7. Iskolai autonómiát!<br />
-    8. A pedagógusbérek rendezését!<br />
-    9. A tankerület esküdjék meg a munka törvénykönyvére, leterhelt tanárainkat ne vigyék helyettesíteni, a helyettesítést ellátó tanárokat fizessék ki!<br />
-    10. A kölcseys tanárok kirúgásának visszavonását!<br />
-    11. Párbeszédet az oktatásban dolgozókkal!<br />
-    12. A fenyegetések beszüntetését!`,
+    1) NYILVÁNOS PÁRBESZÉDET, HITELES TÁJÉKOZTATÁST!<br />
+    2) MEGBECSÜLÉST A PEDAGÓGUSOKNAK!<br />
+    3) ÉRDEKÉRVÉNYESÍTŐ SZTRÁJKJOGOT!<br />
+    4) FELELŐS OKTATÁSTI MINISZTÉRIUMOT!<br />
+    5) KISEBB TERHELÉST!<br />
+    6) ESÉLYTEREMTŐ, MINŐSÉGI OKTATÁST!<br />
+    7) VERSENYKÉPES ÉS ÉRTÉKÁLLÓ BÉREZÉST!<br />
+    8) 21. SZÁZADI KÖRNYEZETET!<br />
+    9) SZAKMAI KORSZERŰ, SZABAD!`,
   ],
   [
     "Kik állnak a Forródrót mögött?",
