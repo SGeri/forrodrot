@@ -14,17 +14,17 @@ const questions = [
     `
     A Forródrót csupán információ-gyűjtő és megosztó oldal, az egyes kezdeményezések szervezői és résztvevői más-más problémákra hívják fel a figyelmet és várnak megoldást. Egy azonban biztos: a magyar közoktatás válságban van és sürgős változtatások nélkül összeomlik.
     <br /><br />
-    <strong>Mit kíván a magyar pedagógus:</strong>
+    <strong>Pedagógusok, diákok és szülők 9 pontja:</strong>
     <br /><br />
-    1) NYILVÁNOS PÁRBESZÉDET, HITELES TÁJÉKOZTATÁST!<br />
-    2) MEGBECSÜLÉST A PEDAGÓGUSOKNAK!<br />
-    3) ÉRDEKÉRVÉNYESÍTŐ SZTRÁJKJOGOT!<br />
-    4) FELELŐS OKTATÁSTI MINISZTÉRIUMOT!<br />
-    5) KISEBB TERHELÉST!<br />
-    6) ESÉLYTEREMTŐ, MINŐSÉGI OKTATÁST!<br />
-    7) VERSENYKÉPES ÉS ÉRTÉKÁLLÓ BÉREZÉST!<br />
-    8) 21. SZÁZADI KÖRNYEZETET!<br />
-    9) SZAKMAI KORSZERŰ, SZABAD!`,
+    1) Nyilvános párbeszédet, hiteles tájékoztatást!<br />
+    2) Megbecsülést a pedagógusoknak!<br />
+    3) Érdekérvényesítő sztrájkjogot!<br />
+    4) Felelős oktatásti minisztériumot!<br />
+    5) Kisebb terhelést!<br />
+    6) Esélyteremtő, minőségi oktatást!<br />
+    7) Versenyképes és értékálló bérezést!<br />
+    8) 21. Századi környezetet!<br />
+    9) Szakmai korszerű, szabad!`,
   ],
   [
     "Kik állnak a Forródrót mögött?",
