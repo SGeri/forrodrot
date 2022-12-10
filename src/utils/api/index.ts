@@ -18,19 +18,12 @@ enum Endpoints {
   GetParticipants = "/api/participants",
 }
 
-const headers = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "https://*.forrodrot.com",
-};
-
-const getOptions = {
-  method: "GET",
-  headers,
-};
-
-const postOptions = {
+const options = {
   method: "POST",
-  headers,
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "https://*.forrodrot.com",
+  },
 };
 
 const handleError = (e: any) => {
@@ -48,7 +41,7 @@ const handleError = (e: any) => {
 // Article related API calls
 export const getArticle = async (slug: string) => {
   return await fetch(BASE_URL + Endpoints.GetArticle, {
-    ...getOptions,
+    ...options,
     body: JSON.stringify({ slug }),
   })
     .then((res) => res.json())
@@ -57,7 +50,7 @@ export const getArticle = async (slug: string) => {
 
 export const getArticles = async (showHidden?: boolean, short?: boolean) => {
   return await fetch(BASE_URL + Endpoints.GetArticles, {
-    ...getOptions,
+    ...options,
     body: JSON.stringify({ showHidden, short }),
   })
     .then((res) => res.json())
@@ -66,7 +59,7 @@ export const getArticles = async (showHidden?: boolean, short?: boolean) => {
 
 export const addArticle = async (article: Article) => {
   return await fetch(BASE_URL + Endpoints.AddArticle, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify(article),
   })
     .then((res) => res.json())
@@ -75,7 +68,7 @@ export const addArticle = async (article: Article) => {
 
 export const editArticles = async (article: Article) => {
   return await fetch(BASE_URL + Endpoints.EditArticle, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify(article),
   })
     .then((res) => res.json())
@@ -84,7 +77,7 @@ export const editArticles = async (article: Article) => {
 
 export const deleteArticle = async (id: string) => {
   return await fetch(BASE_URL + Endpoints.DeleteArticle, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify({ id }),
   })
     .then((res) => res.json())
@@ -93,14 +86,14 @@ export const deleteArticle = async (id: string) => {
 
 // Article related API calls
 export const getEvents = async () => {
-  return await fetch(BASE_URL + Endpoints.GetEvents, getOptions)
+  return await fetch(BASE_URL + Endpoints.GetEvents, options)
     .then((res) => res.json())
     .catch(handleError);
 };
 
 export const addEvent = async (event: Event) => {
   return await fetch(BASE_URL + Endpoints.AddEvent, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify(event),
   })
     .then((res) => res.json())
@@ -109,7 +102,7 @@ export const addEvent = async (event: Event) => {
 
 export const editEvent = async (event: Event) => {
   return await fetch(BASE_URL + Endpoints.EditEvent, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify(event),
   })
     .then((res) => res.json())
@@ -118,7 +111,7 @@ export const editEvent = async (event: Event) => {
 
 export const deleteEvent = async (id: string) => {
   return await fetch(BASE_URL + Endpoints.DeleteEvent, {
-    ...postOptions,
+    ...options,
     body: JSON.stringify({ id }),
   })
     .then((res) => res.json())
@@ -126,7 +119,7 @@ export const deleteEvent = async (id: string) => {
 };
 
 export const getParticipants = async () => {
-  return await fetch(BASE_URL + Endpoints.GetParticipants, getOptions)
+  return await fetch(BASE_URL + Endpoints.GetParticipants, options)
     .then((res) => res.json())
     .catch(handleError);
 };
