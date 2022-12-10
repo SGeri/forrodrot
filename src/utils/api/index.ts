@@ -22,7 +22,8 @@ const options = {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "https://*.forrodrot.com",
+    "Access-Control-Allow-Origin":
+      "https://www.forrodrot.com https://forrodrot.com",
   },
 };
 
