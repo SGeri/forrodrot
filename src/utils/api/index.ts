@@ -18,12 +18,19 @@ enum Endpoints {
   GetParticipants = "/api/participants",
 }
 
+const headers = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "https://*.forrodrot.com",
+};
+
+const getOptions = {
+  method: "GET",
+  headers,
+};
+
 const postOptions = {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  },
+  headers,
 };
 
 const handleError = (e: any) => {
@@ -41,7 +48,7 @@ const handleError = (e: any) => {
 // Article related API calls
 export const getArticle = async (slug: string) => {
   return await fetch(BASE_URL + Endpoints.GetArticle, {
-    ...postOptions,
+    ...getOptions,
     body: JSON.stringify({ slug }),
   })
     .then((res) => res.json())
@@ -50,7 +57,7 @@ export const getArticle = async (slug: string) => {
 
 export const getArticles = async (showHidden?: boolean, short?: boolean) => {
   return await fetch(BASE_URL + Endpoints.GetArticles, {
-    ...postOptions,
+    ...getOptions,
     body: JSON.stringify({ showHidden, short }),
   })
     .then((res) => res.json())
@@ -86,7 +93,7 @@ export const deleteArticle = async (id: string) => {
 
 // Article related API calls
 export const getEvents = async () => {
-  return await fetch(BASE_URL + Endpoints.GetEvents)
+  return await fetch(BASE_URL + Endpoints.GetEvents, getOptions)
     .then((res) => res.json())
     .catch(handleError);
 };
@@ -119,7 +126,7 @@ export const deleteEvent = async (id: string) => {
 };
 
 export const getParticipants = async () => {
-  return await fetch(BASE_URL + Endpoints.GetParticipants)
+  return await fetch(BASE_URL + Endpoints.GetParticipants, getOptions)
     .then((res) => res.json())
     .catch(handleError);
 };
